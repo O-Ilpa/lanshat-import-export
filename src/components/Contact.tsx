@@ -22,7 +22,7 @@ const Contact = () => {
                 <Mail className="h-5 w-5 text-accent" />
               </div>
               <div className="text-sm text-muted-foreground mb-1">Email</div>
-              <div className="text-foreground font-medium">contact@consultco.com</div>
+              <div className="text-foreground font-medium">contact@lanshat.com</div>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
