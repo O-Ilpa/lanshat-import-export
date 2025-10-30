@@ -11,7 +11,7 @@ const About = () => {
   return (
     <section id="about" className="py-24">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-16 items-center animate-fade-in">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Why Choose Us
