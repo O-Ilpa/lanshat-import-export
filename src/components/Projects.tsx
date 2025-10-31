@@ -1,5 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import manufacturingImg from "@/assets/project-manufacturing.jpg";
+import supplyChainImg from "@/assets/project-supply-chain.jpg";
+import equipmentImg from "@/assets/project-equipment.jpg";
+import qualityImg from "@/assets/project-quality.jpg";
 
 const projects = [
   {
@@ -8,7 +12,8 @@ const projects = [
     description: "Streamlined production processes across 5 facilities, reducing operational costs by 32% while improving output quality and safety compliance.",
     category: "Industrial Services",
     year: "2024",
-    tags: ["Process Optimization", "Cost Reduction", "Safety"]
+    tags: ["Process Optimization", "Cost Reduction", "Safety"],
+    image: manufacturingImg
   },
   {
     title: "International Supply Chain Integration",
@@ -16,7 +21,8 @@ const projects = [
     description: "Established comprehensive import operations from 12 countries, implementing customs compliance systems and reducing delivery times by 45%.",
     category: "Importing Services",
     year: "2023",
-    tags: ["Logistics", "Compliance", "Supply Chain"]
+    tags: ["Logistics", "Compliance", "Supply Chain"],
+    image: supplyChainImg
   },
   {
     title: "Industrial Equipment Sourcing",
@@ -24,7 +30,8 @@ const projects = [
     description: "Coordinated procurement and importation of specialized machinery from European suppliers, managing all logistics and installation coordination.",
     category: "Importing Services",
     year: "2023",
-    tags: ["Equipment", "Procurement", "Installation"]
+    tags: ["Equipment", "Procurement", "Installation"],
+    image: equipmentImg
   },
   {
     title: "Quality Management System Implementation",
@@ -32,7 +39,8 @@ const projects = [
     description: "Designed and implemented ISO-certified quality management framework, achieving 99.7% product consistency and reducing waste by 28%.",
     category: "Industrial Services",
     year: "2024",
-    tags: ["Quality Management", "ISO Certification", "Waste Reduction"]
+    tags: ["Quality Management", "ISO Certification", "Waste Reduction"],
+    image: qualityImg
   }
 ];
 
@@ -52,9 +60,16 @@ const Projects = () => {
           {projects.map((project, index) => (
             <Card 
               key={index} 
-              className="border-border hover:shadow-lg transition-all duration-300 animate-fade-in"
+              className="border-border hover:shadow-lg transition-all duration-300 animate-fade-in overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                />
+              </div>
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
                   <Badge variant="secondary" className="mb-2">

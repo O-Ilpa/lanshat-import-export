@@ -1,4 +1,5 @@
 import { CheckCircle2 } from "lucide-react";
+import { useCountAnimation } from "@/hooks/useCountAnimation";
 
 const benefits = [
   "20+ years of combined industry expertise",
@@ -8,6 +9,10 @@ const benefits = [
 ];
 
 const About = () => {
+  const { count: projectsCount, elementRef: projectsRef } = useCountAnimation(500);
+  const { count: satisfactionCount, elementRef: satisfactionRef } = useCountAnimation(98);
+  const { count: countriesCount, elementRef: countriesRef } = useCountAnimation(35);
+
   return (
     <section id="about" className="py-24">
       <div className="container mx-auto px-6">
@@ -31,16 +36,16 @@ const About = () => {
           </div>
           <div className="bg-muted/50 rounded-2xl p-12 border border-border">
             <div className="space-y-8">
-              <div>
-                <div className="text-5xl font-bold text-foreground mb-2">500+</div>
+              <div ref={projectsRef}>
+                <div className="text-5xl font-bold text-foreground mb-2">{projectsCount}+</div>
                 <div className="text-muted-foreground">Projects Completed</div>
               </div>
-              <div>
-                <div className="text-5xl font-bold text-foreground mb-2">98%</div>
+              <div ref={satisfactionRef}>
+                <div className="text-5xl font-bold text-foreground mb-2">{satisfactionCount}%</div>
                 <div className="text-muted-foreground">Client Satisfaction</div>
               </div>
-              <div>
-                <div className="text-5xl font-bold text-foreground mb-2">35+</div>
+              <div ref={countriesRef}>
+                <div className="text-5xl font-bold text-foreground mb-2">{countriesCount}+</div>
                 <div className="text-muted-foreground">Countries Served</div>
               </div>
             </div>

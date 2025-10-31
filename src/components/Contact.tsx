@@ -2,8 +2,52 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useState, FormEvent } from "react";
+import emailjs from "@emailjs/browser";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const templateParams = {
+      from_name: formData.get("name"),
+      from_email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+    };
+
+    try {
+      // Replace these with your actual EmailJS credentials
+      await emailjs.send(
+        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
+        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+        templateParams,
+        "YOUR_PUBLIC_KEY" // Replace with your EmailJS public key
+      );
+
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you as soon as possible.",
+      });
+
+      (e.target as HTMLFormElement).reset();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-24 bg-muted/30">
       <div className="container mx-auto px-6">
@@ -40,26 +84,44 @@ const Contact = () => {
             </div>
           </div>
           <div className="bg-card rounded-2xl p-8 border border-border">
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <Input placeholder="Your Name" className="bg-background" />
+                  <Input 
+                    name="name"
+                    placeholder="Your Name" 
+                    className="bg-background"
+                    required 
+                  />
                 </div>
                 <div>
-                  <Input type="email" placeholder="Your Email" className="bg-background" />
+                  <Input 
+                    type="email"
+                    name="email"
+                    placeholder="Your Email" 
+                    className="bg-background"
+                    required 
+                  />
                 </div>
               </div>
               <div>
-                <Input placeholder="Subject" className="bg-background" />
+                <Input 
+                  name="subject"
+                  placeholder="Subject" 
+                  className="bg-background"
+                  required 
+                />
               </div>
               <div>
                 <Textarea 
+                  name="message"
                   placeholder="Tell us about your project" 
                   className="bg-background min-h-[150px]"
+                  required
                 />
               </div>
-              <Button type="submit" size="lg" className="w-full">
-                Send Message
+              <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </div>
