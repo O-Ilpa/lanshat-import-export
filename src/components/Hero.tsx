@@ -1,25 +1,17 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
 import heroImage from "@/assets/hero-industrial.jpg";
 
 const Hero = () => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   return (
     <section className="relative min-h-screen flex items-center">
       <div className="absolute inset-0 overflow-hidden">
-        {!imageLoaded && (
-          <Skeleton className="w-full h-full" />
-        )}
         <img 
           src={heroImage} 
           alt="Industrial facility" 
-          className={`w-full h-full object-cover opacity-10 transition-opacity duration-300 ${
-            imageLoaded ? 'opacity-10' : 'opacity-0'
-          }`}
-          onLoad={() => setImageLoaded(true)}
+          className="w-full h-full object-cover opacity-10"
+          loading="eager"
+          fetchPriority="high"
         />
       </div>
       <div className="container mx-auto px-6 py-32 relative z-10">
