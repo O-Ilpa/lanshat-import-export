@@ -3,8 +3,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState, FormEvent } from "react";
-import emailjs from "@emailjs/browser";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  subject: z.string().trim().min(1, "Subject is required").max(200, "Subject must be less than 200 characters"),
+  message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters"),
+});
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,21 +23,28 @@ const Contact = () => {
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
-    const templateParams = {
-      from_name: formData.get("name"),
-      from_email: formData.get("email"),
-      subject: formData.get("subject"),
-      message: formData.get("message"),
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      subject: formData.get("subject") as string,
+      message: formData.get("message") as string,
     };
 
     try {
-      // Replace these with your actual EmailJS credentials
-      await emailjs.send(
-        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
-        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
-        templateParams,
-        "YOUR_PUBLIC_KEY" // Replace with your EmailJS public key
-      );
+      contactSchema.parse(data);
+
+      const { error: insertError } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: data.name.trim(),
+          email: data.email.trim(),
+          subject: data.subject.trim(),
+          message: data.message.trim(),
+        });
+
+      if (insertError) {
+        throw insertError;
+      }
 
       toast({
         title: "Message sent!",
@@ -38,11 +53,20 @@ const Contact = () => {
 
       (e.target as HTMLFormElement).reset();
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
-      });
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again.",
+          variant: "destructive",
+        });
+        console.error("Error submitting contact form:", error);
+      }
     } finally {
       setIsSubmitting(false);
     }

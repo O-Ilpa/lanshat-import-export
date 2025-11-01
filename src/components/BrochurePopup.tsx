@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
 
 const emailSchema = z.object({
   email: z.string().trim().email({ message: "Please enter a valid email address" }).max(255, { message: "Email must be less than 255 characters" })
@@ -27,14 +28,21 @@ const BrochurePopup = () => {
     }
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
     try {
       emailSchema.parse({ email });
       
-      // Here you would typically send the email to your backend
+      const { error: insertError } = await supabase
+        .from('brochure_emails')
+        .insert({ email: email.trim() });
+
+      if (insertError) {
+        throw insertError;
+      }
+      
       toast({
         title: "Success!",
         description: "We'll send our brochure to your email shortly.",
@@ -46,6 +54,9 @@ const BrochurePopup = () => {
     } catch (err) {
       if (err instanceof z.ZodError) {
         setError(err.errors[0].message);
+      } else {
+        setError("Failed to submit. Please try again.");
+        console.error("Error submitting email:", err);
       }
     }
   };
