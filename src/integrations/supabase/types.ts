@@ -32,6 +32,39 @@ export type Database = {
         }
         Relationships: []
       }
+      consultation_requests: {
+        Row: {
+          created_at: string
+          email: string
+          field: string
+          id: string
+          message: string | null
+          name: string
+          phone: string
+          preferred_date: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          field: string
+          id?: string
+          message?: string | null
+          name: string
+          phone: string
+          preferred_date: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          field?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string
+          preferred_date?: string
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           created_at: string
