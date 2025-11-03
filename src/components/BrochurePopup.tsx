@@ -6,6 +6,7 @@ import { X } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const emailSchema = z.object({
   email: z.string().trim().email({ message: "Please enter a valid email address" }).max(255, { message: "Email must be less than 255 characters" })
@@ -15,6 +16,7 @@ const BrochurePopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const { t } = useLanguage();
 
   useEffect(() => {
     const hasSeenPopup = sessionStorage.getItem("brochurePopupSeen");
@@ -44,8 +46,8 @@ const BrochurePopup = () => {
       }
       
       toast({
-        title: "Success!",
-        description: "We'll send our brochure to your email shortly.",
+        title: t('brochure.success.title'),
+        description: t('brochure.success.desc'),
       });
       
       sessionStorage.setItem("brochurePopupSeen", "true");
@@ -55,7 +57,11 @@ const BrochurePopup = () => {
       if (err instanceof z.ZodError) {
         setError(err.errors[0].message);
       } else {
-        setError("Failed to submit. Please try again.");
+        toast({
+          title: t('brochure.error.title'),
+          description: t('brochure.error.desc'),
+          variant: "destructive",
+        });
         console.error("Error submitting email:", err);
       }
     }
@@ -77,16 +83,16 @@ const BrochurePopup = () => {
           <span className="sr-only">Close</span>
         </button>
         <DialogHeader>
-          <DialogTitle className="text-2xl">Download Our Brochure</DialogTitle>
+          <DialogTitle className="text-2xl">{t('brochure.title')}</DialogTitle>
           <DialogDescription className="text-base pt-2">
-            Get detailed insights into our industrial and importing services. Enter your email to receive our comprehensive brochure.
+            {t('brochure.subtitle')}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 pt-4">
           <div>
             <Input
               type="email"
-              placeholder="your.email@company.com"
+              placeholder={t('brochure.email')}
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -101,10 +107,10 @@ const BrochurePopup = () => {
           </div>
           <div className="flex gap-3">
             <Button type="submit" className="flex-1">
-              Send Brochure
+              {t('brochure.download')}
             </Button>
             <Button type="button" variant="outline" onClick={handleClose}>
-              Maybe Later
+              {t('footer.contact')}
             </Button>
           </div>
         </form>

@@ -1,37 +1,52 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Factory, Ship, TrendingUp } from "lucide-react";
-
-const services = [
-  {
-    icon: Factory,
-    title: "Industrial Services",
-    description: "Comprehensive solutions for manufacturing optimization, process improvement, and operational efficiency.",
-    features: ["Process Optimization", "Quality Management", "Safety Compliance"]
-  },
-  {
-    icon: Ship,
-    title: "Importing Services",
-    description: "End-to-end import management, logistics coordination, and customs compliance for seamless global trade.",
-    features: ["Logistics Coordination", "Customs Clearance", "Supply Chain Management"]
-  },
-  {
-    icon: TrendingUp,
-    title: "Strategic Consulting",
-    description: "Data-driven insights and strategic planning to accelerate growth and maximize operational performance.",
-    features: ["Market Analysis", "Risk Assessment", "Growth Strategy"]
-  }
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Services = () => {
+  const { t } = useLanguage();
+  
+  const services = [
+    {
+      icon: Factory,
+      title: t('services.industrial.title'),
+      description: t('services.industrial.desc'),
+      features: [
+        t('services.industrial.1'),
+        t('services.industrial.2'),
+        t('services.industrial.3')
+      ]
+    },
+    {
+      icon: Ship,
+      title: t('services.importing.title'),
+      description: t('services.importing.desc'),
+      features: [
+        t('services.importing.1'),
+        t('services.importing.2'),
+        t('services.importing.3')
+      ]
+    },
+    {
+      icon: TrendingUp,
+      title: t('services.consulting.title'),
+      description: t('services.consulting.desc'),
+      features: [
+        t('services.consulting.1'),
+        t('services.consulting.2'),
+        t('services.consulting.3')
+      ]
+    }
+  ];
+  
   return (
     <section id="services" className="py-24 bg-muted/30">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Our Services
+            {t('services.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Tailored solutions that drive efficiency, reduce costs, and accelerate your business growth
+            {t('services.subtitle')}
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">

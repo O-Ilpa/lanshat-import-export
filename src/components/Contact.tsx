@@ -5,6 +5,8 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { useState, FormEvent } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
+import emailjs from '@emailjs/browser';
 import { z } from "zod";
 
 const contactSchema = z.object({
@@ -17,6 +19,7 @@ const contactSchema = z.object({
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,6 +36,7 @@ const Contact = () => {
     try {
       contactSchema.parse(data);
 
+      // Save to Supabase
       const { error: insertError } = await supabase
         .from('contact_submissions')
         .insert({
@@ -46,23 +50,41 @@ const Contact = () => {
         throw insertError;
       }
 
+      // Send via EmailJS
+      try {
+        await emailjs.send(
+          'YOUR_SERVICE_ID',
+          'YOUR_TEMPLATE_ID',
+          {
+            from_name: data.name,
+            from_email: data.email,
+            subject: data.subject,
+            message: data.message,
+          },
+          'YOUR_PUBLIC_KEY'
+        );
+      } catch (emailError) {
+        console.error("EmailJS error:", emailError);
+        // Continue even if email fails since we saved to database
+      }
+
       toast({
-        title: "Message sent!",
-        description: "We'll get back to you as soon as possible.",
+        title: t('contact.form.success.title'),
+        description: t('contact.form.success.desc'),
       });
 
       (e.target as HTMLFormElement).reset();
     } catch (error) {
       if (error instanceof z.ZodError) {
         toast({
-          title: "Validation Error",
+          title: t('contact.form.validation'),
           description: error.errors[0].message,
           variant: "destructive",
         });
       } else {
         toast({
-          title: "Error",
-          description: "Failed to send message. Please try again.",
+          title: t('contact.form.error.title'),
+          description: t('contact.form.error.desc'),
           variant: "destructive",
         });
         console.error("Error submitting contact form:", error);
@@ -78,10 +100,10 @@ const Contact = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Let's Work Together
+              {t('contact.title')}
             </h2>
             <p className="text-lg text-muted-foreground">
-              Ready to optimize your operations? Get in touch with our team today.
+              {t('contact.subtitle')}
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
@@ -89,22 +111,22 @@ const Contact = () => {
               <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                 <Mail className="h-5 w-5 text-accent" />
               </div>
-              <div className="text-sm text-muted-foreground mb-1">Email</div>
-              <div className="text-foreground font-medium">contact@lanshat.com</div>
+              <div className="text-sm text-muted-foreground mb-1">{t('contact.email')}</div>
+              <div className="text-foreground font-medium">{t('footer.email')}</div>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                 <Phone className="h-5 w-5 text-accent" />
               </div>
-              <div className="text-sm text-muted-foreground mb-1">Phone</div>
-              <div className="text-foreground font-medium">+1 (555) 123-4567</div>
+              <div className="text-sm text-muted-foreground mb-1">{t('contact.phone')}</div>
+              <div className="text-foreground font-medium">{t('footer.phone')}</div>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                 <MapPin className="h-5 w-5 text-accent" />
               </div>
-              <div className="text-sm text-muted-foreground mb-1">Office</div>
-              <div className="text-foreground font-medium">New York, NY</div>
+              <div className="text-sm text-muted-foreground mb-1">{t('contact.office')}</div>
+              <div className="text-foreground font-medium">{t('footer.address')}</div>
             </div>
           </div>
           <div className="bg-card rounded-2xl p-8 border border-border">
@@ -113,7 +135,7 @@ const Contact = () => {
                 <div>
                   <Input 
                     name="name"
-                    placeholder="Your Name" 
+                    placeholder={t('contact.form.name')}
                     className="bg-background"
                     required 
                   />
@@ -122,7 +144,7 @@ const Contact = () => {
                   <Input 
                     type="email"
                     name="email"
-                    placeholder="Your Email" 
+                    placeholder={t('contact.form.email')}
                     className="bg-background"
                     required 
                   />
@@ -131,7 +153,7 @@ const Contact = () => {
               <div>
                 <Input 
                   name="subject"
-                  placeholder="Subject" 
+                  placeholder={t('contact.form.subject')}
                   className="bg-background"
                   required 
                 />
@@ -139,13 +161,13 @@ const Contact = () => {
               <div>
                 <Textarea 
                   name="message"
-                  placeholder="Tell us about your project" 
+                  placeholder={t('contact.form.message')}
                   className="bg-background min-h-[150px]"
                   required
                 />
               </div>
               <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
               </Button>
             </form>
           </div>

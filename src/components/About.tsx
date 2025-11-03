@@ -1,17 +1,21 @@
 import { CheckCircle2 } from "lucide-react";
 import { useCountAnimation } from "@/hooks/useCountAnimation";
-
-const benefits = [
-  "20+ years of combined industry expertise",
-  "Global network of trusted partners",
-  "Customized solutions for your unique needs",
-  "Proven track record of successful projects"
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
+  const { t } = useLanguage();
   const { count: projectsCount, elementRef: projectsRef } = useCountAnimation(500);
   const { count: satisfactionCount, elementRef: satisfactionRef } = useCountAnimation(98);
   const { count: countriesCount, elementRef: countriesRef } = useCountAnimation(35);
+
+  const benefits = [
+    t('about.benefit.1'),
+    t('about.benefit.2'),
+    t('about.benefit.3'),
+    t('about.benefit.4'),
+    t('about.benefit.5'),
+    t('about.benefit.6')
+  ];
 
   return (
     <section id="about" className="py-24">
@@ -19,11 +23,10 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-16 items-center animate-fade-in">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Why Choose Us
+              {t('about.title')}
             </h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              We combine deep industry knowledge with innovative solutions to help businesses 
-              navigate the complexities of industrial operations and international trade.
+              {t('about.subtitle')}
             </p>
             <ul className="space-y-4">
               {benefits.map((benefit, index) => (
@@ -38,15 +41,15 @@ const About = () => {
             <div className="space-y-8">
               <div ref={projectsRef}>
                 <div className="text-5xl font-bold text-foreground mb-2">{projectsCount}+</div>
-                <div className="text-muted-foreground">Projects Completed</div>
+                <div className="text-muted-foreground">{t('about.stats.projects')}</div>
               </div>
               <div ref={satisfactionRef}>
                 <div className="text-5xl font-bold text-foreground mb-2">{satisfactionCount}%</div>
-                <div className="text-muted-foreground">Client Satisfaction</div>
+                <div className="text-muted-foreground">{t('about.stats.satisfaction')}</div>
               </div>
               <div ref={countriesRef}>
                 <div className="text-5xl font-bold text-foreground mb-2">{countriesCount}+</div>
-                <div className="text-muted-foreground">Countries Served</div>
+                <div className="text-muted-foreground">{t('about.stats.countries')}</div>
               </div>
             </div>
           </div>
