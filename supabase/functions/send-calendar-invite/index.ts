@@ -1,5 +1,8 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const COMPANY_EMAIL = Deno.env.get("COMPANY_EMAIL");
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -14,143 +17,142 @@ interface ConsultationRequest {
   message?: string;
 }
 
-// Function to create calendar event
-async function createCalendarEvent(request: ConsultationRequest, accessToken: string) {
-  const event = {
-    summary: `Consultation: ${request.field} - ${request.name}`,
-    description: `
-Consultation Request Details:
-- Name: ${request.name}
-- Email: ${request.email}
-- Phone: ${request.phone}
-- Field: ${request.field}
-- Message: ${request.message || 'No message provided'}
-    `.trim(),
-    start: {
-      dateTime: new Date(request.date).toISOString(),
-      timeZone: 'UTC',
-    },
-    end: {
-      dateTime: new Date(new Date(request.date).getTime() + 60 * 60 * 1000).toISOString(), // 1 hour duration
-      timeZone: 'UTC',
-    },
-    attendees: [
-      { email: request.email },
-      { email: Deno.env.get('COMPANY_EMAIL') },
-    ],
-    reminders: {
-      useDefault: false,
-      overrides: [
-        { method: 'email', minutes: 24 * 60 },
-        { method: 'popup', minutes: 30 },
-      ],
-    },
+// Function to create iCal format calendar event
+function createICalEvent(request: ConsultationRequest): string {
+  const startDate = new Date(request.date);
+  const endDate = new Date(startDate.getTime() + 60 * 60 * 1000); // 1 hour duration
+  
+  // Format dates to iCal format (YYYYMMDDTHHmmssZ)
+  const formatDate = (date: Date) => {
+    return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
   };
 
-  const response = await fetch(
-    'https://www.googleapis.com/calendar/v3/calendars/primary/events?sendUpdates=all',
-    {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(event),
-    }
-  );
+  const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Lanshat//Consultation Booking//EN
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+UID:${crypto.randomUUID()}@lanshat.com
+DTSTAMP:${formatDate(new Date())}
+DTSTART:${formatDate(startDate)}
+DTEND:${formatDate(endDate)}
+SUMMARY:Consultation: ${request.field} - ${request.name}
+DESCRIPTION:Consultation Request Details:\\n- Name: ${request.name}\\n- Email: ${request.email}\\n- Phone: ${request.phone}\\n- Field: ${request.field}\\n- Message: ${request.message || 'No message provided'}
+LOCATION:To be determined
+STATUS:CONFIRMED
+SEQUENCE:0
+ORGANIZER;CN=Lanshat:mailto:${COMPANY_EMAIL}
+ATTENDEE;CN=${request.name};RSVP=TRUE:mailto:${request.email}
+ATTENDEE;CN=Lanshat Team;RSVP=TRUE:mailto:${COMPANY_EMAIL}
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Reminder: Consultation in 24 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR`;
 
-  if (!response.ok) {
-    const error = await response.text();
-    console.error('Google Calendar API error:', error);
-    throw new Error(`Failed to create calendar event: ${error}`);
-  }
-
-  return await response.json();
+  return icsContent;
 }
 
-// Function to get access token using service account
-async function getAccessToken(): Promise<string> {
-  const serviceAccount = {
-    client_email: Deno.env.get('GOOGLE_CALENDAR_CLIENT_EMAIL'),
-    private_key: Deno.env.get('GOOGLE_CALENDAR_PRIVATE_KEY')?.replace(/\\n/g, '\n'),
-  };
-
-  if (!serviceAccount.client_email || !serviceAccount.private_key) {
-    throw new Error('Missing Google Calendar credentials');
-  }
-
-  const now = Math.floor(Date.now() / 1000);
-  const expiry = now + 3600;
-
-  const header = {
-    alg: 'RS256',
-    typ: 'JWT',
-  };
-
-  const claim = {
-    iss: serviceAccount.client_email,
-    scope: 'https://www.googleapis.com/auth/calendar',
-    aud: 'https://oauth2.googleapis.com/token',
-    exp: expiry,
-    iat: now,
-  };
-
-  // Create JWT (simplified - in production use a proper JWT library)
-  const encoder = new TextEncoder();
-  const headerB64 = btoa(JSON.stringify(header));
-  const claimB64 = btoa(JSON.stringify(claim));
-  const signatureInput = `${headerB64}.${claimB64}`;
-
-  // Import private key
-  const pemHeader = '-----BEGIN PRIVATE KEY-----';
-  const pemFooter = '-----END PRIVATE KEY-----';
-  const pemContents = serviceAccount.private_key
-    .replace(pemHeader, '')
-    .replace(pemFooter, '')
-    .replace(/\s/g, '');
+// Function to send calendar invite emails using Resend API
+async function sendCalendarInvites(request: ConsultationRequest) {
+  const icalContent = createICalEvent(request);
+  const icalBase64 = btoa(icalContent);
   
-  const binaryDer = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
-
-  const cryptoKey = await crypto.subtle.importKey(
-    'pkcs8',
-    binaryDer,
-    {
-      name: 'RSASSA-PKCS1-v1_5',
-      hash: 'SHA-256',
-    },
-    false,
-    ['sign']
-  );
-
-  const signature = await crypto.subtle.sign(
-    'RSASSA-PKCS1-v1_5',
-    cryptoKey,
-    encoder.encode(signatureInput)
-  );
-
-  const signatureB64 = btoa(String.fromCharCode(...new Uint8Array(signature)));
-  const jwt = `${signatureInput}.${signatureB64}`;
-
-  // Exchange JWT for access token
-  const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
+  // Send to client
+  const clientEmailResponse = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `Bearer ${RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
     },
-    body: new URLSearchParams({
-      grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-      assertion: jwt,
+    body: JSON.stringify({
+      from: "Lanshat <onboarding@resend.dev>",
+      to: [request.email],
+      subject: `Consultation Confirmed - ${new Date(request.date).toLocaleDateString()}`,
+      html: `
+        <h2>Consultation Request Confirmed</h2>
+        <p>Dear ${request.name},</p>
+        <p>Thank you for booking a consultation with Lanshat. Your request has been received and confirmed.</p>
+        
+        <h3>Consultation Details:</h3>
+        <ul>
+          <li><strong>Date:</strong> ${new Date(request.date).toLocaleString()}</li>
+          <li><strong>Field:</strong> ${request.field}</li>
+          <li><strong>Your Phone:</strong> ${request.phone}</li>
+          ${request.message ? `<li><strong>Your Message:</strong> ${request.message}</li>` : ''}
+        </ul>
+        
+        <p>A calendar invite is attached to this email. Please add it to your calendar.</p>
+        <p>We will contact you shortly to confirm the exact time and location details.</p>
+        
+        <p>Best regards,<br>The Lanshat Team</p>
+      `,
+      attachments: [
+        {
+          filename: 'consultation.ics',
+          content: icalBase64,
+        },
+      ],
     }),
   });
 
-  if (!tokenResponse.ok) {
-    const error = await tokenResponse.text();
-    console.error('Token exchange error:', error);
-    throw new Error(`Failed to get access token: ${error}`);
+  if (!clientEmailResponse.ok) {
+    const error = await clientEmailResponse.text();
+    throw new Error(`Failed to send client email: ${error}`);
   }
 
-  const tokenData = await tokenResponse.json();
-  return tokenData.access_token;
+  const clientEmail = await clientEmailResponse.json();
+
+  // Send to company
+  const companyEmailResponse = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: "Lanshat Bookings <onboarding@resend.dev>",
+      to: [COMPANY_EMAIL],
+      subject: `New Consultation Request - ${request.name}`,
+      html: `
+        <h2>New Consultation Request</h2>
+        
+        <h3>Client Information:</h3>
+        <ul>
+          <li><strong>Name:</strong> ${request.name}</li>
+          <li><strong>Email:</strong> ${request.email}</li>
+          <li><strong>Phone:</strong> ${request.phone}</li>
+        </ul>
+        
+        <h3>Consultation Details:</h3>
+        <ul>
+          <li><strong>Preferred Date:</strong> ${new Date(request.date).toLocaleString()}</li>
+          <li><strong>Field:</strong> ${request.field}</li>
+          ${request.message ? `<li><strong>Message:</strong> ${request.message}</li>` : ''}
+        </ul>
+        
+        <p>A calendar invite is attached. Please confirm the appointment with the client.</p>
+      `,
+      attachments: [
+        {
+          filename: 'consultation.ics',
+          content: icalBase64,
+        },
+      ],
+    }),
+  });
+
+  if (!companyEmailResponse.ok) {
+    const error = await companyEmailResponse.text();
+    throw new Error(`Failed to send company email: ${error}`);
+  }
+
+  const companyEmail = await companyEmailResponse.json();
+
+  return { clientEmail, companyEmail };
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -164,19 +166,17 @@ const handler = async (req: Request): Promise<Response> => {
     
     console.log('Processing consultation request for:', consultationRequest.email);
 
-    // Get access token
-    const accessToken = await getAccessToken();
-    console.log('Successfully obtained access token');
-
-    // Create calendar event
-    const event = await createCalendarEvent(consultationRequest, accessToken);
-    console.log('Calendar event created:', event.id);
+    // Send calendar invites via email
+    const result = await sendCalendarInvites(consultationRequest);
+    console.log('Calendar invites sent successfully');
+    console.log('Client email ID:', result.clientEmail.id);
+    console.log('Company email ID:', result.companyEmail.id);
 
     return new Response(
       JSON.stringify({ 
-        success: true, 
-        eventId: event.id,
-        htmlLink: event.htmlLink 
+        success: true,
+        clientEmailId: result.clientEmail.id,
+        companyEmailId: result.companyEmail.id
       }),
       {
         status: 200,
