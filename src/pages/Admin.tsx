@@ -23,11 +23,23 @@ interface ContactSubmission {
   created_at: string;
 }
 
+interface ConsultationRequest {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  preferred_date: string;
+  field: string;
+  message: string | null;
+  created_at: string;
+}
+
 const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [brochureEmails, setBrochureEmails] = useState<BrochureEmail[]>([]);
   const [contactSubmissions, setContactSubmissions] = useState<ContactSubmission[]>([]);
+  const [consultationRequests, setConsultationRequests] = useState<ConsultationRequest[]>([]);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -73,13 +85,15 @@ const Admin = () => {
 
   const loadData = async () => {
     try {
-      const [emailsResponse, contactsResponse] = await Promise.all([
+      const [emailsResponse, contactsResponse, consultationsResponse] = await Promise.all([
         supabase.from('brochure_emails').select('*').order('created_at', { ascending: false }),
         supabase.from('contact_submissions').select('*').order('created_at', { ascending: false }),
+        supabase.from('consultation_requests').select('*').order('created_at', { ascending: false }),
       ]);
 
       if (emailsResponse.data) setBrochureEmails(emailsResponse.data);
       if (contactsResponse.data) setContactSubmissions(contactsResponse.data);
+      if (consultationsResponse.data) setConsultationRequests(consultationsResponse.data);
     } catch (error) {
       console.error("Error loading data:", error);
       toast({
@@ -129,6 +143,9 @@ const Admin = () => {
             </TabsTrigger>
             <TabsTrigger value="contacts">
               Contact Submissions ({contactSubmissions.length})
+            </TabsTrigger>
+            <TabsTrigger value="consultations">
+              Consultation Requests ({consultationRequests.length})
             </TabsTrigger>
           </TabsList>
 
@@ -206,6 +223,61 @@ const Admin = () => {
                             <TableCell>{item.subject}</TableCell>
                             <TableCell className="max-w-md truncate">
                               {item.message}
+                            </TableCell>
+                            <TableCell className="whitespace-nowrap">
+                              {formatDate(item.created_at)}
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      )}
+                    </TableBody>
+                  </Table>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="consultations">
+            <Card>
+              <CardHeader>
+                <CardTitle>Consultation Requests</CardTitle>
+                <CardDescription>
+                  1-on-1 consultation requests from potential clients
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="rounded-md border">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Name</TableHead>
+                        <TableHead>Email</TableHead>
+                        <TableHead>Phone</TableHead>
+                        <TableHead>Field</TableHead>
+                        <TableHead>Preferred Date</TableHead>
+                        <TableHead>Message</TableHead>
+                        <TableHead>Date</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {consultationRequests.length === 0 ? (
+                        <TableRow>
+                          <TableCell colSpan={7} className="text-center text-muted-foreground">
+                            No consultation requests yet
+                          </TableCell>
+                        </TableRow>
+                      ) : (
+                        consultationRequests.map((item) => (
+                          <TableRow key={item.id}>
+                            <TableCell className="font-medium">{item.name}</TableCell>
+                            <TableCell>{item.email}</TableCell>
+                            <TableCell>{item.phone}</TableCell>
+                            <TableCell className="capitalize">{item.field}</TableCell>
+                            <TableCell className="whitespace-nowrap">
+                              {formatDate(item.preferred_date)}
+                            </TableCell>
+                            <TableCell className="max-w-md truncate">
+                              {item.message || '-'}
                             </TableCell>
                             <TableCell className="whitespace-nowrap">
                               {formatDate(item.created_at)}

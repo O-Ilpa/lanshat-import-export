@@ -1,6 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import manufacturingImg from "@/assets/project-manufacturing.jpg";
 import supplyChainImg from "@/assets/project-supply-chain.jpg";
 import equipmentImg from "@/assets/project-equipment.jpg";
@@ -8,24 +11,29 @@ import qualityImg from "@/assets/project-quality.jpg";
 
 const Projects = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   
   const projects = [
     {
+      id: 'equipment',
       title: t('projects.equipment.title'),
       description: t('projects.equipment.desc'),
       image: equipmentImg
     },
     {
+      id: 'manufacturing',
       title: t('projects.manufacturing.title'),
       description: t('projects.manufacturing.desc'),
       image: manufacturingImg
     },
     {
+      id: 'quality',
       title: t('projects.quality.title'),
       description: t('projects.quality.desc'),
       image: qualityImg
     },
     {
+      id: 'supply',
       title: t('projects.supply.title'),
       description: t('projects.supply.desc'),
       image: supplyChainImg
@@ -61,9 +69,17 @@ const Projects = () => {
                 <CardTitle className="text-2xl mb-2">{project.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground mb-4">
                   {project.description}
                 </p>
+                <Button 
+                  variant="outline" 
+                  className="w-full group"
+                  onClick={() => navigate(`/project/${project.id}`)}
+                >
+                  {t('projects.readMore')}
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
               </CardContent>
             </Card>
           ))}
