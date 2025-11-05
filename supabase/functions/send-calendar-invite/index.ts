@@ -69,7 +69,7 @@ async function sendCalendarInvites(request: ConsultationRequest) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: "Lanshat <onboarding@lanshat.com>",
+      from: "Lanshat <hello@lanshat.com>",
       to: [request.email],
       subject: `Consultation Confirmed - ${new Date(request.date).toLocaleDateString()}`,
       html: `
@@ -114,7 +114,7 @@ async function sendCalendarInvites(request: ConsultationRequest) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: "Lanshat Bookings <onboarding@lanshat.com>",
+      from: "Lanshat Bookings <hello@lanshat.com>",
       to: [COMPANY_EMAIL],
       subject: `New Consultation Request - ${request.name}`,
       html: `
