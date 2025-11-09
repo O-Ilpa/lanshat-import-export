@@ -21,7 +21,8 @@ const ConsultationForm = () => {
     email: "",
     phone: "",
     field: "",
-    message: ""
+    message: "",
+    time: ""
   });
   const [date, setDate] = useState<Date>();
   const [loading, setLoading] = useState(false);
@@ -34,6 +35,16 @@ const ConsultationForm = () => {
       return;
     }
 
+    if (!formData.time) {
+      toast.error(t('consultation.selectTime'));
+      return;
+    }
+
+    // Combine date and time
+    const [hours, minutes] = formData.time.split(':');
+    const combinedDateTime = new Date(date);
+    combinedDateTime.setHours(parseInt(hours), parseInt(minutes));
+
     setLoading(true);
 
     try {
@@ -44,7 +55,7 @@ const ConsultationForm = () => {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          preferred_date: date.toISOString(),
+          preferred_date: combinedDateTime.toISOString(),
           field: formData.field,
           message: formData.message
         }]);
@@ -57,7 +68,7 @@ const ConsultationForm = () => {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          date: date.toISOString(),
+          date: combinedDateTime.toISOString(),
           field: formData.field,
           message: formData.message
         }
@@ -76,7 +87,8 @@ const ConsultationForm = () => {
         email: "",
         phone: "",
         field: "",
-        message: ""
+        message: "",
+        time: ""
       });
       setDate(undefined);
     } catch (error) {
@@ -141,32 +153,45 @@ const ConsultationForm = () => {
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label>{t('consultation.date')}</Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !date && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {date ? format(date, "PPP") : <span>{t('consultation.pickDate')}</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                      disabled={(date) => date < new Date()}
-                      initialFocus
-                      className="pointer-events-auto"
-                    />
-                  </PopoverContent>
-                </Popover>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label>{t('consultation.date')}</Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full justify-start text-left font-normal",
+                          !date && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {date ? format(date, "PPP") : <span>{t('consultation.pickDate')}</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={date}
+                        onSelect={setDate}
+                        disabled={(date) => date < new Date()}
+                        initialFocus
+                        className="pointer-events-auto"
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="time">{t('consultation.time')}</Label>
+                  <Input
+                    id="time"
+                    type="time"
+                    required
+                    value={formData.time}
+                    onChange={(e) => setFormData({...formData, time: e.target.value})}
+                  />
+                </div>
               </div>
 
               <div className="space-y-2">

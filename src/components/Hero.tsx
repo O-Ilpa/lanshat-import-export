@@ -33,7 +33,7 @@ const Hero = () => {
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <a href="#services">{t('hero.learnMore')}</a>
+              <a href="#consultation">{t('hero.bookConsultation')}</a>
             </Button>
           </div>
         </div>

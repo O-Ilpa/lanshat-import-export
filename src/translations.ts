@@ -11,7 +11,7 @@ const translations = {
     'hero.title': 'حلول صناعية متقدمة',
     'hero.subtitle': 'نقدم حلولاً مبتكرة في الاستيراد الصناعي والاستشارات الاستراتيجية لتحسين عملياتك وزيادة كفاءتك',
     'hero.cta': 'استكشف خدماتنا',
-    'hero.learnMore': 'اعرف المزيد',
+    'hero.bookConsultation': 'احجز استشارة مجانية',
     
     // Services
     'services.title': 'خدماتنا الشاملة',
@@ -71,6 +71,8 @@ const translations = {
     'consultation.date': 'التاريخ المفضل',
     'consultation.pickDate': 'اختر التاريخ',
     'consultation.selectDate': 'الرجاء اختيار تاريخ',
+    'consultation.time': 'الوقت المفضل',
+    'consultation.selectTime': 'الرجاء اختيار الوقت',
     'consultation.field': 'المجال',
     'consultation.fieldPlaceholder': 'اختر مجال الاستشارة',
     'consultation.fields.equipment': 'المعدات الصناعية',
@@ -159,7 +161,7 @@ const translations = {
     'hero.title': 'Advanced Industrial Solutions',
     'hero.subtitle': 'We deliver innovative solutions in industrial importing and strategic consulting to optimize your operations and maximize efficiency',
     'hero.cta': 'Explore Services',
-    'hero.learnMore': 'Learn More',
+    'hero.bookConsultation': 'Book Free Consultation',
     
     // Services
     'services.title': 'Our Comprehensive Services',
@@ -219,6 +221,8 @@ const translations = {
     'consultation.date': 'Preferred Date',
     'consultation.pickDate': 'Pick a date',
     'consultation.selectDate': 'Please select a date',
+    'consultation.time': 'Preferred Time',
+    'consultation.selectTime': 'Please select a time',
     'consultation.field': 'Field',
     'consultation.fieldPlaceholder': 'Select consultation field',
     'consultation.fields.equipment': 'Industrial Equipment',

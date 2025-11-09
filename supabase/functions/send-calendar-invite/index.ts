@@ -1,7 +1,12 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
-const RESEND_API_KEY = "re_YsXNU5L6_6Vap9t1XPMBYpBjHDxq1yibx";
-const COMPANY_EMAIL = "omarilpa08@gmail.com"
+const SMTP_HOST = Deno.env.get("SMTP_HOST") as string;
+const SMTP_PORT = parseInt(Deno.env.get("SMTP_PORT") || "587");
+const SMTP_USER = Deno.env.get("SMTP_USER") as string;
+const SMTP_PASSWORD = Deno.env.get("SMTP_PASSWORD") as string;
+const COMPANY_EMAIL = "omarilpa08@gmail.com";
+const FROM_EMAIL = "sales@lanshat.com";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -56,21 +61,27 @@ END:VCALENDAR`;
   return icsContent;
 }
 
-// Function to send calendar invite emails using Resend API
+// Function to send calendar invite emails using Nodemailer
 async function sendCalendarInvites(request: ConsultationRequest) {
   const icalContent = createICalEvent(request);
-  const icalBase64 = btoa(icalContent);
   
-  // Send to client
-  const clientEmailResponse = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
+  const client = new SMTPClient({
+    connection: {
+      hostname: SMTP_HOST,
+      port: SMTP_PORT,
+      tls: true,
+      auth: {
+        username: SMTP_USER,
+        password: SMTP_PASSWORD,
+      },
     },
-    body: JSON.stringify({
-      from: "Lanshat <hello@lanshat.com>",
-      to: [request.email],
+  });
+
+  try {
+    // Send to client
+    await client.send({
+      from: FROM_EMAIL,
+      to: request.email,
       subject: `Consultation Confirmed - ${new Date(request.date).toLocaleDateString()}`,
       html: `
         <h2>Consultation Request Confirmed</h2>
@@ -93,29 +104,17 @@ async function sendCalendarInvites(request: ConsultationRequest) {
       attachments: [
         {
           filename: 'consultation.ics',
-          content: icalBase64,
+          content: icalContent,
+          contentType: 'text/calendar',
+          encoding: 'text',
         },
       ],
-    }),
-  });
+    });
 
-  if (!clientEmailResponse.ok) {
-    const error = await clientEmailResponse.text();
-    throw new Error(`Failed to send client email: ${error}`);
-  }
-
-  const clientEmail = await clientEmailResponse.json();
-
-  // Send to company
-  const companyEmailResponse = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: "Lanshat Bookings <hello@lanshat.com>",
-      to: [COMPANY_EMAIL],
+    // Send to company
+    await client.send({
+      from: FROM_EMAIL,
+      to: COMPANY_EMAIL,
       subject: `New Consultation Request - ${request.name}`,
       html: `
         <h2>New Consultation Request</h2>
@@ -139,20 +138,20 @@ async function sendCalendarInvites(request: ConsultationRequest) {
       attachments: [
         {
           filename: 'consultation.ics',
-          content: icalBase64,
+          content: icalContent,
+          contentType: 'text/calendar',
+          encoding: 'text',
         },
       ],
-    }),
-  });
+    });
 
-  if (!companyEmailResponse.ok) {
-    const error = await companyEmailResponse.text();
-    throw new Error(`Failed to send company email: ${error}`);
+    await client.close();
+    
+    return { success: true };
+  } catch (error) {
+    await client.close();
+    throw error;
   }
-
-  const companyEmail = await companyEmailResponse.json();
-
-  return { clientEmail, companyEmail };
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -167,16 +166,12 @@ const handler = async (req: Request): Promise<Response> => {
     console.log('Processing consultation request for:', consultationRequest.email);
 
     // Send calendar invites via email
-    const result = await sendCalendarInvites(consultationRequest);
+    await sendCalendarInvites(consultationRequest);
     console.log('Calendar invites sent successfully');
-    console.log('Client email ID:', result.clientEmail.id);
-    console.log('Company email ID:', result.companyEmail.id);
 
     return new Response(
       JSON.stringify({ 
-        success: true,
-        clientEmailId: result.clientEmail.id,
-        companyEmailId: result.companyEmail.id
+        success: true
       }),
       {
         status: 200,
