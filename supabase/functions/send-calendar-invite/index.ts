@@ -6,7 +6,7 @@ const SMTP_PORT = parseInt(Deno.env.get("SMTP_PORT") || "587");
 const SMTP_USER = Deno.env.get("SMTP_USER") as string;
 const SMTP_PASSWORD = Deno.env.get("SMTP_PASSWORD") as string;
 const COMPANY_EMAIL = "omarilpa08@gmail.com";
-const FROM_EMAIL = "o.ilpa@lanshat.com";
+const FROM_EMAIL = "sales@lanshat.com";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
