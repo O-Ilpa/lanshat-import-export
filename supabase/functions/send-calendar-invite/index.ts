@@ -1,9 +1,9 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
-const SMTP_HOST = "smtp.zoho.eu";
-const SMTP_PORT = parseInt(Deno.env.get("SMTP_PORT") || "587");
-const SMTP_USER = Deno.env.get("SMTP_USER") as string;
+const SMTP_HOST = "smtp.zoho.com";
+const SMTP_PORT = parseInt("465");
+const SMTP_USER = "";
 const SMTP_PASSWORD = Deno.env.get("SMTP_PASSWORD") as string;
 const COMPANY_EMAIL = "omarilpa08@gmail.com";
 const FROM_EMAIL = "o.ilpa@lanshat.com";
