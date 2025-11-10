@@ -136,7 +136,7 @@ const translations = {
     'footer.phone': '+1 (555) 123-4567',
     'footer.address': 'نيويورك، نيويورك',
     'footer.followUs': 'تابعنا',
-    'footer.copyright': '© 2024 لانشات. جميع الحقوق محفوظة.',
+    'footer.copyright': 'لانشات. جميع الحقوق محفوظة. ',
     
     // Brochure Popup
     'brochure.title': 'قم بتنزيل الكتيب الخاص بنا',

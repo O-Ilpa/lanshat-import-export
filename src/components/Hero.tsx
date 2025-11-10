@@ -29,8 +29,7 @@ const Hero = () => {
             <Button asChild size="lg" className="group">
               <a href="#contact">
                 {t('hero.cta')}
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+                </a>
             </Button>
             <Button asChild variant="outline" size="lg">
               <a href="#consultation">{t('hero.bookConsultation')}</a>
