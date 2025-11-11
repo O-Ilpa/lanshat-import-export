@@ -50,27 +50,50 @@ const translations = {
     "projects.backToHome": "العودة للرئيسية",
     "projects.notFound": "المشروع غير موجود",
     "projects.details": "تفاصيل المشروع",
-    "projects.stats.title": "إحصائيات المشروع",
-    "projects.stats.completion": "نسبة الإنجاز",
-    "projects.stats.satisfaction": "رضا العملاء",
-    "projects.stats.timeline": "الجدول الزمني",
-    "projects.stats.onTime": "في الوقت المحدد",
-    "projects.equipment.title": "تحديث المعدات",
-    "projects.equipment.desc": "تنفيذ معدات حديثة لتحسين الكفاءة",
-    "projects.equipment.detailed":
-      "مشروع شامل لتحديث وتحسين المعدات الصناعية باستخدام أحدث التقنيات. نجحنا في زيادة الكفاءة التشغيلية بنسبة 35% وتقليل وقت التوقف عن العمل بشكل كبير. تم تنفيذ المشروع على مراحل لضمان الحد الأدنى من التأثير على الإنتاج اليومي.",
-    "projects.manufacturing.title": "تحسين التصنيع",
-    "projects.manufacturing.desc": "تبسيط العمليات لتحقيق أقصى إنتاجية",
-    "projects.manufacturing.detailed":
-      "عملية شاملة لتحليل وإعادة تصميم عمليات التصنيع لتحقيق أقصى قدر من الإنتاجية. شمل المشروع تطبيق منهجيات Lean Manufacturing وأدوات Six Sigma، مما أدى إلى تقليل الهدر بنسبة 40% وزيادة معدل الإنتاج بنسبة 25%.",
-    "projects.quality.title": "نظام إدارة الجودة",
-    "projects.quality.desc": "تطبيق معايير ضمان الجودة الشاملة",
-    "projects.quality.detailed":
-      "تصميم وتنفيذ نظام شامل لإدارة الجودة يتوافق مع معايير ISO 9001. تم تطوير إجراءات رقابة جودة صارمة وتدريب الفرق على أفضل الممارسات. النتيجة: تحسن بنسبة 45% في معايير الجودة وانخفاض في الشكاوى بنسبة 60%.",
-    "projects.supply.title": "تحسين سلسلة التوريد",
-    "projects.supply.desc": "تحسين الخدمات اللوجستية ومعدلات التسليم",
-    "projects.supply.detailed":
-      "إعادة هندسة كاملة لسلسلة التوريد باستخدام تقنيات التتبع الحديثة وأنظمة إدارة المخزون الذكية. تم تحسين العلاقات مع الموردين وتطوير استراتيجيات توريد بديلة. حققنا تقليل تكاليف اللوجستيات بنسبة 30% وتحسين وقت التسليم بنسبة 50%.",
+
+    // Client Projects
+    "projects.clients.aboHashem.title": "أبو هاشم للخدمات اللوجستية",
+    "projects.clients.aboHashem.desc":
+      "تحسينات لوجستية متكاملة وأنظمة رفع للمستودعات متعددة الطوابق.",
+    "projects.clients.aboHashem.detailed":
+      "قدّمنا مشروع تحسين لوجستي متكامل لمستودع متعدد الطوابق: تركيب منصة رفع هيدروليكية ثقيلة إلى جانب مصاعد عادية للبضائع الخفيفة، مما حسّن من معدل التدفق، وخفّض زمن المناولة، ورفع مستوى السلامة والمرونة التشغيلية.",
+
+    "projects.clients.aboHashem.images": [
+      "/assets/projects/aboHashem-1.jpg",
+      "/assets/projects/aboHashem-2.jpg",
+    ],
+    "projects.clients.alsanhouri.title": "السنهوري للكيماويات",
+    "projects.clients.alsanhouri.desc":
+      "توريد وتجميع معدات عمليات كيماوية جديدة ومجددة بموثوقية عالية.",
+    "projects.clients.alsanhouri.detailed":
+      "قمنا بتوريد وتجميع مزيج من المعدات الجديدة والمجددة لخطوط المعالجة، مع تنفيذ التكامل الموقعي والتشغيل التجريبي لضمان التوافق والاعتمادية والالتزام بمعايير السلامة.",
+    "projects.clients.alsanhouri.images": [
+      "/assets/projects/alsanhouri-1.jpg",
+      "/assets/projects/alsanhouri-2.jpg",
+    ],
+    "projects.clients.almostakbal.title": "المستقبل",
+    "projects.clients.almostakbal.desc":
+      "تجميع وتوريد ماكينات ومواد خام لخطوط إنتاج مواد التعبئة والتغليف.",
+    "projects.clients.almostakbal.detailed":
+      "قدّمنا حلًا متكاملًا لصناعة التعبئة: من موردية المعدات والمواد الخام إلى التجميع الموقعي والتشغيل والمعايرة، ليكون الخط جاهزًا للإنتاج الصناعي على نطاق واسع.",
+
+    "projects.clients.government.title": "مشاريع حكومية",
+    "projects.clients.government.desc":
+      "توريد وتجميع محطات أسفلت وخرسانة موقعيًا لدعم مشروعات البنية التحتية.",
+    "projects.clients.government.detailed":
+      "نفذنا عمليات الشراء واللوجستيات وتركيب محطات الأسفلت والخرسانة لمشروعات حكومية، مع ضمان مطابقة المواصفات التنظيمية ومعايير الجودة المتطلبة.",
+
+    "projects.clients.stone.title": "محطات تكسير وتصنيف الأحجار",
+    "projects.clients.stone.desc":
+      "تنفيذ محطات تكسير وتصنيف شاملة لمواد البناء والركام.",
+    "projects.clients.stone.detailed":
+      "تسليم محطات تكسير وتصنيف مصممة لتحقيق أعلى معدلات الإنتاج ودقة تصنيف المواد، مع التركيز على المتانة وسهولة الصيانة وجودة الناتج النهائي.",
+
+    "projects.clients.power.title": "مولدات طاقة ووحدات مستقلة",
+    "projects.clients.power.desc":
+      "توريد وتشغيل واختبار مولدات صناعية وحلول طاقة مستقلة.",
+    "projects.clients.power.detailed":
+      "قمنا بتوريد وتشغيل مجموعات مولدات عالية الأداء وحلول طاقة مستقلة، شملت اختبارات التحميل ودمج أنظمة التحكم وتسليم مستندات التشغيل لضمان استقرار التشغيل طويل المدى.",
 
     // Consultation
     "consultation.title": "احجز استشارة مجانية",
@@ -228,26 +251,66 @@ const translations = {
     "projects.stats.satisfaction": "Client Satisfaction",
     "projects.stats.timeline": "Timeline",
     "projects.stats.onTime": "On Time",
-    "projects.equipment.title": "Equipment Upgrade",
-    "projects.equipment.desc":
-      "Implementing modern equipment for improved efficiency",
-    "projects.equipment.detailed":
-      "A comprehensive project to upgrade and enhance industrial equipment using the latest technologies. We successfully increased operational efficiency by 35% and significantly reduced downtime. The project was implemented in phases to ensure minimal impact on daily production.",
-    "projects.manufacturing.title": "Manufacturing Optimization",
-    "projects.manufacturing.desc":
-      "Streamlining processes for maximum productivity",
-    "projects.manufacturing.detailed":
-      "A comprehensive process to analyze and redesign manufacturing operations for maximum productivity. The project included implementation of Lean Manufacturing methodologies and Six Sigma tools, resulting in a 40% reduction in waste and a 25% increase in production rate.",
-    "projects.quality.title": "Quality Management System",
-    "projects.quality.desc":
-      "Implementing comprehensive quality assurance standards",
-    "projects.quality.detailed":
-      "Design and implementation of a comprehensive quality management system compliant with ISO 9001 standards. Strict quality control procedures were developed and teams were trained on best practices. Result: 45% improvement in quality standards and 60% reduction in complaints.",
-    "projects.supply.title": "Supply Chain Enhancement",
-    "projects.supply.desc": "Optimizing logistics and delivery rates",
-    "projects.supply.detailed":
-      "Complete re-engineering of the supply chain using modern tracking technologies and smart inventory management systems. Supplier relationships were improved and alternative sourcing strategies developed. We achieved a 30% reduction in logistics costs and a 50% improvement in delivery time.",
+    // Client Projects
+    "projects.clients.aboHashem.title": "Abo Hashem Logistics",
+    "projects.clients.aboHashem.desc":
+      "Comprehensive logistics and multi-level warehouse lifting systems.",
+    "projects.clients.aboHashem.detailed":
+      "Delivered a turnkey logistics enhancement: installed heavy-duty hydraulic lifting platforms alongside standard elevators to improve throughput, safety, and operational flexibility across a multi-level warehouse.",
+    "projects.clients.aboHashem.images": [
+      "/assets/projects/aboHashem-1.jpg",
+      "/assets/projects/aboHashem-2.jpg",
+    ],
 
+    "projects.clients.alsanhouri.title": "Alsanhouri Chemicals",
+    "projects.clients.alsanhouri.desc":
+      "Supply and assembly of reliable new and reconditioned chemical processing equipment.",
+    "projects.clients.alsanhouri.detailed":
+      "Supplied and assembled a mix of new and refurbished process equipment, ensuring compatibility with existing lines and prioritizing operational reliability and safety standards.",
+    "projects.clients.alsanhouri.images": [
+      "/assets/projects/alsanhouri-1.jpg",
+      "/assets/projects/alsanhouri-2.jpg",
+    ],
+
+    "projects.clients.almostakbal.title": "Almostakbal",
+    "projects.clients.almostakbal.desc":
+      "Assembly and supply of machines and raw materials for packaging production.",
+    "projects.clients.almostakbal.detailed":
+      "Delivered complete packaging production setups — from sourcing machinery and raw materials to on-site assembly, commissioning, and calibration for immediate production use.",
+    "projects.clients.almostakbal.images": [
+      "/assets/projects/almostakbal-1.jpg",
+      "/assets/projects/almostakbal-2.jpg",
+    ],
+
+    "projects.clients.government.title": "Government Projects",
+    "projects.clients.government.desc":
+      "Supply and on-site assembly of asphalt and concrete stations for public infrastructure.",
+    "projects.clients.government.detailed":
+      "Executed sourcing, logistics, and assembly for asphalt and concrete batching stations to support government infrastructure projects, meeting regulatory and quality requirements.",
+    "projects.clients.government.images": [
+      "/assets/projects/government-1.jpg",
+      "/assets/projects/government-2.jpg",
+    ],
+
+    "projects.clients.stone.title": "Stone Crushing & Classification",
+    "projects.clients.stone.desc":
+      "Implementation of stone crushing and classification stations for construction materials.",
+    "projects.clients.stone.detailed":
+      "Turnkey delivery of crushing and classification equipment, configured for optimal throughput and material grading — suitable for aggregate and construction material operations.",
+    "projects.clients.stone.images": [
+      "/assets/projects/stone-1.jpg",
+      "/assets/projects/stone-2.jpg",
+    ],
+
+    "projects.clients.power.title": "Power Generators & Standalone Units",
+    "projects.clients.power.desc":
+      "Supply and commissioning of industrial power generator units and standalone energy solutions.",
+    "projects.clients.power.detailed":
+      "Supplied and commissioned high-performance generator sets and standalone power solutions, including load testing and handover documentation for reliable long-term operation.",
+    "projects.clients.power.images": [
+      "/assets/projects/power-1.jpg",
+      "/assets/projects/power-2.jpg",
+    ],
     // Consultation
     "consultation.title": "Book a Free Consultation",
     "consultation.subtitle":
