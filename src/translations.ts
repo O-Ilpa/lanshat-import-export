@@ -5,7 +5,7 @@ const translations = {
     "header.about": "عن الشركة",
     "header.contact": "تواصل معنا",
     "header.getStarted": "ابدأ الآن",
-    "header.brandName": "لانشات",
+    "header.brandName": "لنشات",
 
     // Hero
     "hero.title": "التميز في الحلول الصناعية",
@@ -107,7 +107,7 @@ const translations = {
       "تم إرسال طلبك بنجاح لكن لم نتمكن من إرسال دعوة التقويم",
 
     // About
-    "about.title": "لماذا تختار لانشات؟",
+    "about.title": "لماذا تختار لنشات؟",
     "about.subtitle": "شريكك الموثوق في التميز الصناعي",
     "about.benefit.1": "أكثر من 15 عامًا من الخبرة الصناعية",
     "about.benefit.2": "شبكة عالمية من الموردين الموثوقين",
@@ -122,7 +122,7 @@ const translations = {
     // Teamwork Quote
     "teamwork.quote":
       "النجاح لا يتحقق فرديًا، بل بالتعاون والعمل الجماعي نصل إلى القمة",
-    "teamwork.author": "- فريق لانشات",
+    "teamwork.author": "- فريق لنشات",
 
     // Contact
     "contact.title": "لنعمل معًا",
@@ -143,7 +143,7 @@ const translations = {
     "contact.form.validation": "خطأ في التحقق",
 
     // Footer
-    "footer.brand": "لانشات",
+    "footer.brand": "لنشات",
     "footer.desc": "شريكك الموثوق في الحلول الصناعية والتميز في العمليات.",
     "footer.quickLinks": "روابط سريعة",
     "footer.home": "الرئيسية",
@@ -155,7 +155,7 @@ const translations = {
     "footer.phone": "+1 (555) 123-4567",
     "footer.address": "نيويورك، نيويورك",
     "footer.followUs": "تابعنا",
-    "footer.copyright": "لانشات. جميع الحقوق محفوظة. ",
+    "footer.copyright": "لنشات. جميع الحقوق محفوظة. ",
 
     // Brochure Popup
     "brochure.title": "قم بتنزيل الكتيب الخاص بنا",
