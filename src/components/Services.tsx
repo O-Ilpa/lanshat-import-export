@@ -68,8 +68,8 @@ const Services = () => {
               <CardContent>
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-muted-foreground">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent mr-3"></span>
+                    <li key={idx} className="flex font-semibold items-center text-sm text-muted-foreground ">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent m-3"></span>
                       {feature}
                     </li>
                   ))}
