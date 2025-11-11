@@ -14,12 +14,12 @@ const translations = {
     "hero.cta": "استكشف خدماتنا",
     "hero.bookConsultation": "احجز استشارة مجانية",
     // Services
-    "services.title": "خدماتنا الشاملة",
-    "services.subtitle": "حلول متكاملة لتحقيق التميز الصناعي",
+    "services.title": "خدماتنا المتكاملة",
+    "services.subtitle": "حلول صناعية واستشارية شاملة من الفكرة إلى التنفيذ",
 
     "services.industrial.title": "الحلول الصناعية",
     "services.industrial.desc":
-      "خدمات موثوقة وفعالة ومصممة خصيصًا لتلبية احتياجات عملياتك الصناعية.",
+      "نقدم حلولًا صناعية متكاملة تشمل الاستشارات اللوجستية، تجميع خطوط الإنتاج، تفكيك ونقل المصانع والمعدات، وأنظمة الرفع والمنصات الهيدروليكية المصممة بأعلى معايير الأمان والكفاءة.",
     "services.industrial.1":
       "استشارات في اللوجستيات وتجميع خطوط الإنتاج والاستيراد والعمليات الكيميائية.",
     "services.industrial.2":
@@ -31,14 +31,14 @@ const translations = {
 
     "services.importing.title": "خدمات الاستيراد",
     "services.importing.desc":
-      "استيراد متخصص للمعدات والمواد الصناعية عالية الجودة.",
+      "نوفر خدمات استيراد موثوقة للمعدات والمواد الصناعية عالية الجودة، مع متابعة دقيقة من المصدر إلى موقع التشغيل لضمان أفضل أداء واستمرارية.",
     "services.importing.1": "المعدات الصناعية",
     "services.importing.2": "المواد الخام",
     "services.importing.3": "الأجزاء المتخصصة",
 
     "services.consulting.title": "الاستشارات الاستراتيجية",
     "services.consulting.desc":
-      "إرشادات خبراء لمساعدتك على نمو عملك بكفاءة وتحقيق نجاح طويل الأمد.",
+      "ندعم شركاءنا الصناعيين باستشارات عملية في سلاسل التوريد والجودة والتحول الرقمي، لمساعدتهم على رفع الكفاءة وتحقيق النمو المستدام.",
     "services.consulting.1": "تحسين سلسلة التوريد لتحقيق أقصى كفاءة",
     "services.consulting.2": "ضمان إدارة الجودة بشكل مستمر عبر العمليات",
     "services.consulting.3": "توجيه التحول الرقمي للعمليات الصناعية الحديثة",
@@ -184,11 +184,12 @@ const translations = {
     "hero.bookConsultation": "Book Free Consultation",
     // Services
     "services.title": "Our Comprehensive Services",
-    "services.subtitle": "End-to-end solutions for industrial excellence",
+    "services.subtitle":
+      "End-to-end industrial and consulting solutions from concept to execution",
 
     "services.industrial.title": "Industrial Solutions",
     "services.industrial.desc":
-      "Reliable, efficient, and tailored services for your industrial operations.",
+      "Comprehensive industrial services covering logistics consulting, production line assembly, factory dismantling and relocation, and advanced hydraulic lifting systems — all engineered for safety and efficiency.",
     "services.industrial.1":
       "Logistics and production line consulting for machinery, importing, and chemical processes.",
     "services.industrial.2":
@@ -200,14 +201,14 @@ const translations = {
 
     "services.importing.title": "Importing Services",
     "services.importing.desc":
-      "Specialized import of high-quality industrial equipment and materials.",
+      "Reliable importing solutions for high-quality industrial machinery, raw materials, and specialized components — ensuring smooth delivery and lasting performance.",
     "services.importing.1": "Industrial Equipment",
     "services.importing.2": "Raw Materials",
     "services.importing.3": "Specialized Components",
 
-    "services.consulting.title": "Consulting",
+    "services.consulting.title": "Strategic Consulting",
     "services.consulting.desc":
-      "Expert guidance to help your business grow efficiently and achieve long-term success.",
+      "Practical industrial consulting focused on supply chain optimization, quality management, and digital transformation to help your business achieve sustainable growth.",
     "services.consulting.1":
       "Optimizing your supply chain for maximum efficiency",
     "services.consulting.2":
