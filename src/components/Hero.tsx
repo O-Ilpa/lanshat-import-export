@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight, LucideChevronDown, MouseIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import heroImage from "@/assets/hero-industrial.jpg";
+import { ScrollDownButton } from "@radix-ui/react-select";
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -18,14 +19,14 @@ const Hero = () => {
         />
       </div>
       <div className="container mx-auto px-6 py-32 relative z-10">
-        <div className="max-w-3xl animate-fade-in">
+        <div className="max-w-1xl text-center animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
             {t('hero.title')}
           </h1>
           <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
             {t('hero.subtitle')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="group">
               <a href="#contact">
                 {t('hero.cta')}
@@ -36,6 +37,7 @@ const Hero = () => {
             </Button>
           </div>
         </div>
+          <LucideChevronDown className="animate-bounce w-9 h-9 right-[48%] absolute bottom-0 "/>
       </div>
     </section>
   );

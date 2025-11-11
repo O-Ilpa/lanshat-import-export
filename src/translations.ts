@@ -8,12 +8,11 @@ const translations = {
     "header.brandName": "لانشات",
 
     // Hero
-    "hero.title": "حلول صناعية متقدمة",
+    "hero.title": "التميز في الحلول الصناعية",
     "hero.subtitle":
-      "نقدم حلولاً مبتكرة في الاستيراد الصناعي والاستشارات الاستراتيجية لتحسين عملياتك وزيادة كفاءتك",
+      "نقدّم حلولاً صناعية مبتكرة، بدءًا من الاستشارات الاستراتيجية والاستيراد وصولًا إلى تحسين العمليات، لتعزيز الكفاءة وتحقيق أفضل النتائج.",
     "hero.cta": "استكشف خدماتنا",
     "hero.bookConsultation": "احجز استشارة مجانية",
-
     // Services
     "services.title": "خدماتنا الشاملة",
     "services.subtitle": "حلول متكاملة لتحقيق التميز الصناعي",
@@ -178,12 +177,11 @@ const translations = {
     "header.brandName": "Lanshat",
 
     // Hero
-    "hero.title": "Advanced Industrial Solutions",
+    "hero.title": "Industrial Expertise, Simplified",
     "hero.subtitle":
-      "We deliver innovative solutions in industrial importing and strategic consulting to optimize your operations and maximize efficiency",
+      "Delivering innovative industrial solutions—from strategic consulting to importing and operational optimization—to enhance efficiency and drive results.",
     "hero.cta": "Explore Services",
     "hero.bookConsultation": "Book Free Consultation",
-
     // Services
     "services.title": "Our Comprehensive Services",
     "services.subtitle": "End-to-end solutions for industrial excellence",
