@@ -63,6 +63,13 @@ const ProjectDetail: React.FC = () => {
         "projects.clients.aboHashem.detailed",
         "Delivered a turnkey logistics enhancement: installed heavy-duty hydraulic lifting platforms alongside standard elevators to improve throughput, safety, and operational flexibility across a multi-level warehouse."
       ),
+      keyPoints: [
+        "Heavy-duty hydraulic lifting platforms",
+        "Multi-level warehouse integration",
+        "Enhanced safety protocols",
+        "Improved operational throughput",
+        "Complete turnkey solution"
+      ],
       images: [stone1],
       stats: [
         { label: t("projects.stats.completion"), value: "93%" },
@@ -87,6 +94,12 @@ const ProjectDetail: React.FC = () => {
         "projects.clients.alsanhouri.detailed",
         "Supplied and assembled a mix of new and refurbished process equipment, ensuring compatibility with existing lines and prioritizing operational reliability and safety standards."
       ),
+      keyPoints: [
+        "New and refurbished equipment supply",
+        "Chemical processing integration",
+        "Safety standards compliance",
+        "Existing line compatibility"
+      ],
       images: [stone1],
       stats: [
         { label: t("projects.stats.completion"), value: "90%" },
@@ -108,6 +121,13 @@ const ProjectDetail: React.FC = () => {
         "projects.clients.almostakbal.detailed",
         "Delivered complete packaging production setups — from sourcing machinery and raw materials to on-site assembly, commissioning, and calibration for immediate production use."
       ),
+      keyPoints: [
+        "Complete packaging machinery sourcing",
+        "Raw materials supply",
+        "On-site assembly and commissioning",
+        "Production calibration",
+        "Immediate operational readiness"
+      ],
       images: [stone1],
       stats: [
         { label: t("projects.stats.completion"), value: "92%" },
@@ -132,6 +152,13 @@ const ProjectDetail: React.FC = () => {
         "projects.clients.government.detailed",
         "Executed sourcing, logistics, and assembly for asphalt and concrete batching stations to support government infrastructure projects, meeting regulatory and quality requirements."
       ),
+      keyPoints: [
+        "Asphalt batching stations",
+        "Concrete production facilities",
+        "Regulatory compliance",
+        "Quality assurance protocols",
+        "Infrastructure support systems"
+      ],
       images: [stone1],
       stats: [
         { label: t("projects.stats.completion"), value: "89%" },
@@ -156,6 +183,12 @@ const ProjectDetail: React.FC = () => {
         "projects.clients.stone.detailed",
         "Turnkey delivery of crushing and classification equipment, configured for optimal throughput and material grading — suitable for aggregate and construction material operations."
       ),
+      keyPoints: [
+        "Stone crushing equipment",
+        "Material classification systems",
+        "Optimal throughput configuration",
+        "Aggregate production optimization"
+      ],
       images: [stone1],
       stats: [
         { label: t("projects.stats.completion"), value: "88%" },
@@ -178,8 +211,15 @@ const ProjectDetail: React.FC = () => {
       ),
       detailedDescription: withFallback(
         "projects.clients.power.detailed",
-        "dddddddddd and commissioned high-performance generator sets and standalone power solutions, including load testing and handover documentation for reliable long-term operation."
+        "Supplied and commissioned high-performance generator sets and standalone power solutions, including load testing and handover documentation for reliable long-term operation."
       ),
+      keyPoints: [
+        "High-performance generator sets",
+        "Standalone energy solutions",
+        "Comprehensive load testing",
+        "Complete handover documentation",
+        "Long-term operational reliability"
+      ],
       images: [stone1],
       stats: [
         { label: t("projects.stats.completion"), value: "91%" },
@@ -252,9 +292,19 @@ const ProjectDetail: React.FC = () => {
               <h2 className="text-2xl font-bold mb-4">
                 {t("projects.details")}
               </h2>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed mb-6">
                 {project.detailedDescription}
               </p>
+              {project.keyPoints && (
+                <ul className="space-y-2">
+                  {project.keyPoints.map((point: string, index: number) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span className="text-muted-foreground">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </CardContent>
           </Card>
         </div>
