@@ -143,7 +143,7 @@ const ProjectDetail: React.FC = () => {
       ],
     },
 
-    "placeholder-stone": {
+    "stone": {
       title: withFallback(
         "projects.clients.stone.title",
         "Stone Crushing & Classification"

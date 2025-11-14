@@ -25,7 +25,7 @@ const translations = {
     "services.industrial.2":
       "تفكيك ونقل المصانع والصوامع والأبراج الصناعية بأمان وكفاءة.",
     "services.industrial.3":
-      "خدمات رفع ومناولة للمستودعات متعددة الطوابق — للبضائع الخفيفة والثقيلة.",
+      "خدمات رفع ومناولة للمستودعات متعددة الطوابق, للبضائع الخفيفة والثقيلة.",
     "services.industrial.4":
       "أنظمة منصات هيدروليكية مصممة خصيصًا للأداء الصناعي.",
 
@@ -44,7 +44,7 @@ const translations = {
     "services.consulting.3": "توجيه التحول الرقمي للعمليات الصناعية الحديثة",
 
     // Projects
-    "projects.title": "مشاريعنا الناجحة",
+    "projects.title": "اعمال سابقة",
     "projects.subtitle": "أمثلة على التميز في العمل",
     "projects.readMore": "اقرأ المزيد",
     "projects.backToHome": "العودة للرئيسية",
@@ -212,19 +212,19 @@ const translations = {
 
     "services.industrial.title": "Industrial Solutions",
     "services.industrial.desc":
-      "Comprehensive industrial services covering logistics consulting, production line assembly, factory dismantling and relocation, and advanced hydraulic lifting systems — all engineered for safety and efficiency.",
+      "Comprehensive industrial services covering logistics consulting, production line assembly, factory dismantling and relocation, and advanced hydraulic lifting systems, all engineered for safety and efficiency.",
     "services.industrial.1":
       "Logistics and production line consulting for machinery, importing, and chemical processes.",
     "services.industrial.2":
       "Safe dismantling and relocation of factories, silos, and industrial towers.",
     "services.industrial.3":
-      "Lifting and handling services for multi-level warehouses — from light goods to heavy equipment.",
+      "Lifting and handling services for multi-level warehouses, from light goods to heavy equipment.",
     "services.industrial.4":
       "Custom hydraulic platform systems built for industrial performance.",
 
     "services.importing.title": "Importing Services",
     "services.importing.desc":
-      "Reliable importing solutions for high-quality industrial machinery, raw materials, and specialized components — ensuring smooth delivery and lasting performance.",
+      "Reliable importing solutions for high-quality industrial machinery, raw materials, and specialized components, ensuring smooth delivery and lasting performance.",
     "services.importing.1": "Industrial Equipment",
     "services.importing.2": "Raw Materials",
     "services.importing.3": "Specialized Components",
@@ -240,7 +240,7 @@ const translations = {
       "Guiding digital transformation for modern industrial processes",
 
     // Projects
-    "projects.title": "Our Successful Projects",
+    "projects.title": "Past Projects",
     "projects.subtitle": "Examples of Excellence in Action",
     "projects.readMore": "Read More",
     "projects.backToHome": "Back to Home",
@@ -276,7 +276,7 @@ const translations = {
     "projects.clients.almostakbal.desc":
       "Assembly and supply of machines and raw materials for packaging production.",
     "projects.clients.almostakbal.detailed":
-      "Delivered complete packaging production setups — from sourcing machinery and raw materials to on-site assembly, commissioning, and calibration for immediate production use.",
+      "Delivered complete packaging production setups, from sourcing machinery and raw materials to on-site assembly, commissioning, and calibration for immediate production use.",
     "projects.clients.almostakbal.images": [
       "/assets/projects/almostakbal-1.jpg",
       "/assets/projects/almostakbal-2.jpg",
@@ -296,7 +296,7 @@ const translations = {
     "projects.clients.stone.desc":
       "Implementation of stone crushing and classification stations for construction materials.",
     "projects.clients.stone.detailed":
-      "Turnkey delivery of crushing and classification equipment, configured for optimal throughput and material grading — suitable for aggregate and construction material operations.",
+      "Turnkey delivery of crushing and classification equipment, configured for optimal throughput and material grading, suitable for aggregate and construction material operations.",
     "projects.clients.stone.images": [
       "/assets/projects/stone-1.jpg",
       "/assets/projects/stone-2.jpg",
