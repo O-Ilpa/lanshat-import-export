@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
@@ -37,6 +37,11 @@ const ProjectDetail: React.FC = () => {
   const navigate = useNavigate();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [imageZoom, setImageZoom] = useState(1);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // helper to provide a readable fallback if translation key is missing
   const withFallback = (key: string, fallback: string) => {
@@ -285,16 +290,21 @@ const ProjectDetail: React.FC = () => {
           </Card>
         </div>
 
-        <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+        <Dialog open={lightboxOpen} onOpenChange={(open) => {
+          setLightboxOpen(open);
+          if (!open) setImageZoom(1);
+        }}>
           <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-0 bg-black/95">
             <Carousel className="w-full h-full flex items-center justify-center" opts={{ startIndex: selectedImageIndex }}>
               <CarouselContent className="h-full">
                 {project.images.map((image: string, index: number) => (
-                  <CarouselItem key={index} className="basis-full flex items-center justify-center">
+                  <CarouselItem key={index} className="basis-full flex items-center justify-center overflow-auto">
                     <img
                       src={image}
                       alt={`${project.title} - ${index + 1}`}
-                      className="max-h-[85vh] max-w-full object-contain"
+                      className="max-h-[85vh] max-w-full object-contain cursor-zoom-in transition-transform"
+                      style={{ transform: `scale(${imageZoom})` }}
+                      onClick={() => setImageZoom(prev => prev === 1 ? 2 : 1)}
                     />
                   </CarouselItem>
                 ))}
