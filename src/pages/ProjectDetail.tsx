@@ -63,6 +63,7 @@ const ProjectDetail: React.FC = () => {
         "projects.clients.aboHashem.detailed",
         "Delivered a turnkey logistics enhancement: installed heavy-duty hydraulic lifting platforms alongside standard elevators to improve throughput, safety, and operational flexibility across a multi-level warehouse."
       ),
+      keyPoints: t("projects.clients.aboHashem.keyPoints") || [],
       images: [aboHashem1, aboHashem2, aboHashem3],
       stats: [
         { label: t("projects.stats.completion"), value: "93%" },
@@ -87,6 +88,7 @@ const ProjectDetail: React.FC = () => {
         "projects.clients.alsanhouri.detailed",
         "Supplied and assembled a mix of new and refurbished process equipment, ensuring compatibility with existing lines and prioritizing operational reliability and safety standards."
       ),
+      keyPoints: t("projects.clients.alsanhouri.keyPoints") || [],
       images: [stone1],
       stats: [
         { label: t("projects.stats.completion"), value: "90%" },
@@ -108,6 +110,7 @@ const ProjectDetail: React.FC = () => {
         "projects.clients.almostakbal.detailed",
         "Delivered complete packaging production setups — from sourcing machinery and raw materials to on-site assembly, commissioning, and calibration for immediate production use."
       ),
+      keyPoints: t("projects.clients.almostakbal.keyPoints") || [],
       images: [stone1],
       stats: [
         { label: t("projects.stats.completion"), value: "92%" },
@@ -132,6 +135,7 @@ const ProjectDetail: React.FC = () => {
         "projects.clients.government.detailed",
         "Executed sourcing, logistics, and assembly for asphalt and concrete batching stations to support government infrastructure projects, meeting regulatory and quality requirements."
       ),
+      keyPoints: t("projects.clients.government.keyPoints") || [],
       images: [stone1],
       stats: [
         { label: t("projects.stats.completion"), value: "89%" },
@@ -156,6 +160,7 @@ const ProjectDetail: React.FC = () => {
         "projects.clients.stone.detailed",
         "Turnkey delivery of crushing and classification equipment, configured for optimal throughput and material grading — suitable for aggregate and construction material operations."
       ),
+      keyPoints: t("projects.clients.stone.keyPoints") || [],
       images: [stone1],
       stats: [
         { label: t("projects.stats.completion"), value: "88%" },
@@ -178,8 +183,9 @@ const ProjectDetail: React.FC = () => {
       ),
       detailedDescription: withFallback(
         "projects.clients.power.detailed",
-        "dddddddddd and commissioned high-performance generator sets and standalone power solutions, including load testing and handover documentation for reliable long-term operation."
+        "Supplied and commissioned high-performance generator sets and standalone power solutions, including load testing and handover documentation for reliable long-term operation."
       ),
+      keyPoints: t("projects.clients.power.keyPoints") || [],
       images: [stone1],
       stats: [
         { label: t("projects.stats.completion"), value: "91%" },
@@ -253,46 +259,19 @@ const ProjectDetail: React.FC = () => {
               <h2 className="text-2xl font-bold mb-4">
                 {t("projects.details")}
               </h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
+              <p className="text-muted-foreground leading-relaxed mb-6 mb-6">
                 {project.detailedDescription}
               </p>
-
-              <div className="flex gap-6 mt-4">
-                {/* Duration */}
-                <div className="flex flex-col items-center text-center">
-                  <Calendar className="h-6 w-6 text-gray-500 mb-1" />
-                  <span>
-                    {project.startDate} - {project.endDate}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    Duration
-                  </span>
-                </div>
-
-                {/* Status */}
-                <div className="flex flex-col items-center text-center">
-                  {project.isDone ? (
-                    <CheckCircle className="h-6 w-6 text-green-500 mb-1" />
-                  ) : (
-                    <Clock className="h-6 w-6 text-yellow-500 mb-1" />
-                  )}
-                  <span
-                    className={
-                      project.isDone ? "text-green-500" : "text-yellow-500"
-                    }
-                  >
-                    {project.isDone ? "Done" : "Unfinished"}
-                  </span>
-                  <span className="text-sm text-muted-foreground">Status</span>
-                </div>
-
-                {/* Country */}
-                <div className="flex flex-col items-center text-center">
-                  <Flag className="h-6 w-6 text-gray-500 mb-1" />
-                  <span>{project.country}</span>
-                  <span className="text-sm text-muted-foreground">Country</span>
-                </div>
-              </div>
+              {project.keyPoints && (
+                <ul className="space-y-2">
+                  {project.keyPoints.map((point: string, index: number) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span className="text-muted-foreground">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </CardContent>
           </Card>
         </div>
