@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
 import aboHashem1 from "@/assets/projects/aboHashem1.jpg"
+import stone1 from "@/assets/projects/stone1.jpg";
 
 const Projects: React.FC = () => {
   const { t } = useLanguage();
@@ -39,7 +40,7 @@ const Projects: React.FC = () => {
     {
       id: "stone", 
       tKey: "stone",
-      image: aboHashem1,
+      image: stone1,
     },
     {
       id: "power", 

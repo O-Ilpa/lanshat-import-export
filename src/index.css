@@ -5,6 +5,9 @@
 html {
   scroll-behavior: smooth;
 }
+* {
+  border-radius: 0 !important;
+}
 @layer base {
   :root {
     --background: 210 20% 98%;
