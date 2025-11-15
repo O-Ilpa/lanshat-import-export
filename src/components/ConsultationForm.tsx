@@ -21,6 +21,7 @@ const consultationSchema = z.object({
   email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
   phone: z.string().trim().min(1, "Phone is required").max(20, "Phone must be less than 20 characters"),
   field: z.string().min(1, "Please select a consultation field"),
+  meetingType: z.string().min(1, "Please select a meeting type"),
   message: z.string().trim().max(1000, "Message must be less than 1000 characters").optional(),
 });
 
@@ -31,6 +32,7 @@ const ConsultationForm = () => {
     email: "",
     phone: "",
     field: "",
+    meetingType: "",
     message: "",
     time: ""
   });
@@ -47,6 +49,7 @@ const ConsultationForm = () => {
         email: formData.email,
         phone: formData.phone,
         field: formData.field,
+        meetingType: formData.meetingType,
         message: formData.message || "",
       });
 
@@ -76,6 +79,7 @@ const ConsultationForm = () => {
           phone: formData.phone.trim(),
           preferred_date: combinedDateTime.toISOString(),
           field: formData.field,
+          meeting_type: formData.meetingType,
           message: formData.message.trim()
         }]);
 
@@ -93,6 +97,7 @@ const ConsultationForm = () => {
             from_email: formData.email.trim(),
             phone: formData.phone.trim(),
             field: formData.field,
+            meeting_type: formData.meetingType,
             message: formData.message.trim() || 'No message provided',
             preferred_date: format(combinedDateTime, "PPP 'at' p"),
           },
@@ -107,6 +112,7 @@ const ConsultationForm = () => {
             to_email: formData.email.trim(),
             client_name: formData.name.trim(),
             field: formData.field,
+            meeting_type: formData.meetingType,
             preferred_date: format(combinedDateTime, "PPP 'at' p"),
           },
           'YOUR_PUBLIC_KEY'
@@ -124,6 +130,7 @@ const ConsultationForm = () => {
         email: "",
         phone: "",
         field: "",
+        meetingType: "",
         message: "",
         time: ""
       });
@@ -251,6 +258,23 @@ const ConsultationForm = () => {
                     <SelectItem value="quality">{t('consultation.fields.quality')}</SelectItem>
                     <SelectItem value="supply">{t('consultation.fields.supply')}</SelectItem>
                     <SelectItem value="other">{t('consultation.fields.other')}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="meetingType">{t('consultation.meetingType')}</Label>
+                <Select
+                  required
+                  value={formData.meetingType}
+                  onValueChange={(value) => setFormData({...formData, meetingType: value})}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder={t('consultation.meetingTypePlaceholder')} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="office">{t('consultation.meetingTypes.office')}</SelectItem>
+                    <SelectItem value="online">{t('consultation.meetingTypes.online')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

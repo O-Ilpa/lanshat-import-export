@@ -158,6 +158,10 @@ const translations = {
     "consultation.fields.quality": "إدارة الجودة",
     "consultation.fields.supply": "سلسلة التوريد",
     "consultation.fields.other": "أخرى",
+    "consultation.meetingType": "نوع الاجتماع",
+    "consultation.meetingTypePlaceholder": "اختر نوع الاجتماع",
+    "consultation.meetingTypes.office": "في المكتب",
+    "consultation.meetingTypes.online": "اجتماع عبر الإنترنت",
     "consultation.message": "رسالة إضافية",
     "consultation.messagePlaceholder": "أخبرنا المزيد عن احتياجاتك (اختياري)",
     "consultation.submit": "إرسال الطلب",
@@ -167,6 +171,16 @@ const translations = {
     "consultation.error": "حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى",
     "consultation.submittedNoCalendar":
       "تم إرسال طلبك بنجاح لكن لم نتمكن من إرسال دعوة التقويم",
+
+    // Testimonials
+    "testimonials.title": "ماذا يقول عملاؤنا",
+    "testimonials.subtitle": "استمع لآراء من يثق بنا في احتياجاته الصناعية",
+    "testimonials.omar": "العمل مع هذا الفريق غيّر مسار عملياتنا الصناعية. خبرتهم وتفانيهم لا مثيل لهما.",
+    "testimonials.mohamed": "كرئيس تنفيذي، أؤكد لكم أننا نقدم التميز في كل مشروع. التزامنا بالجودة هو ما يميزنا.",
+    "testimonials.abdelkareem": "الحلول التقنية المقدمة حسّنت بشكل ملحوظ من كفاءة التصنيع ومراقبة الجودة لدينا.",
+    "testimonials.roles.me": "مدير المشاريع",
+    "testimonials.roles.ceo": "الرئيس التنفيذي",
+    "testimonials.roles.specialist": "أخصائي تقني",
 
     // About
     "about.title": "لماذا تختار لنشات؟",
@@ -415,6 +429,10 @@ const translations = {
     "consultation.fields.quality": "Quality Management",
     "consultation.fields.supply": "Supply Chain",
     "consultation.fields.other": "Other",
+    "consultation.meetingType": "Meeting Type",
+    "consultation.meetingTypePlaceholder": "Select meeting type",
+    "consultation.meetingTypes.office": "In Office",
+    "consultation.meetingTypes.online": "Online Meeting",
     "consultation.message": "Additional Message",
     "consultation.messagePlaceholder":
       "Tell us more about your needs (optional)",
@@ -426,6 +444,16 @@ const translations = {
       "An error occurred while sending the request. Please try again",
     "consultation.submittedNoCalendar":
       "Your request was submitted successfully but we could not send the calendar invite",
+
+    // Testimonials
+    "testimonials.title": "What Our Clients Say",
+    "testimonials.subtitle": "Hear from those who trust us with their industrial needs",
+    "testimonials.omar": "Working with this team has transformed our industrial operations. Their expertise and dedication are unmatched.",
+    "testimonials.mohamed": "As CEO, I can confidently say we deliver excellence in every project. Our commitment to quality is what sets us apart.",
+    "testimonials.abdelkareem": "The technical solutions provided have significantly improved our manufacturing efficiency and quality control.",
+    "testimonials.roles.me": "Project Manager",
+    "testimonials.roles.ceo": "CEO",
+    "testimonials.roles.specialist": "Technical Specialist",
 
     // About
     "about.title": "Why Choose Lanshat?",
