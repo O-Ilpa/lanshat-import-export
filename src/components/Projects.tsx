@@ -37,7 +37,7 @@ const Projects: React.FC = () => {
       image: aboHashem1,
     },
     {
-      id: "stone", // matches ProjectDetail keys
+      id: "stone", 
       tKey: "stone",
       image: aboHashem1,
     },
@@ -67,7 +67,7 @@ const Projects: React.FC = () => {
             return (
               <Card
                 key={project.id}
-                className="border-border hover:shadow-lg transition-all duration-300 animate-fade-in overflow-hidden"
+                className="border-border rounded-none hover:shadow-lg transition-all duration-300 animate-fade-in overflow-hidden"
                 style={{ animationDelay: `${index * 0.06}s` }}
               >
                 <div className="relative h-48 overflow-hidden">

@@ -31,12 +31,12 @@ const Header = () => {
             variant="ghost" 
             size="sm"
             onClick={toggleLanguage}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 rounded-[3px]"
           >
-            <Languages className="h-4 w-4" />
+            <Languages className="h-4 w-4 rounded-[3px]" />
             <span className="text-sm">{language === 'ar' ? 'EN' : 'عربي'}</span>
           </Button>
-          <Button asChild variant="default" size="sm">
+          <Button asChild variant="default" size="sm" className="rounded-[3px]">
             <a href="#contact">{t('header.getStarted')}</a>
           </Button>
         </div>

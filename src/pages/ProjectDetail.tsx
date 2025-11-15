@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { Calendar, CheckCircle, Clock, Flag } from 'lucide-react';
 import {
   Carousel,
   CarouselContent,
@@ -11,28 +11,28 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import aboHashem1 from "@/assets/project-manufacturing.jpg";
-import aboHashem2 from "@/assets/project-manufacturing.jpg";
-import aboHashem3 from "@/assets/project-manufacturing.jpg";
-import alSanhori1 from "@/assets/project-supply-chain.jpg";
-import alSanhori2 from "@/assets/project-supply-chain.jpg";
-import alSanhori3 from "@/assets/project-supply-chain.jpg";
-import alMostakbl1 from "@/assets/project-equipment.jpg";
-import alMostakbl2 from "@/assets/project-equipment.jpg";
-import alMostakbl3 from "@/assets/project-equipment.jpg";
-import gov1 from "@/assets/project-quality.jpg";
-import gov2 from "@/assets/project-quality.jpg";
-import gov3 from "@/assets/project-quality.jpg";
+import aboHashem1 from "@/assets/projects/aboHashem1.jpg";
+import aboHashem2 from "@/assets/projects/aboHashem2.jpg";
+import aboHashem3 from "@/assets/projects/aboHashem3.jpg";
+import alSanhori1 from "@/assets/projects/alSanhori1.jpg";
+import alSanhori2 from "@/assets/projects/alSanhori2.jpg";
+import alSanhori3 from "@/assets/projects/alSanhori3.jpg";
+import alMostakbl1 from "@/assets/projects/alMostakbl1.jpg";
+import alMostakbl2 from "@/assets/projects/alMostakbl2.jpg";
+import alMostakbl3 from "@/assets/projects/alMostakbl3.jpg";
+import gov1 from "@/assets/projects/gov1.jpg";
+import gov2 from "@/assets/projects/gov2.jpg";
+import gov3 from "@/assets/projects/gov3.jpg";
 import stone1 from "@/assets/projects/stone1.jpg";
-import stone2 from "@/assets/project-quality.jpg";
-import stone3 from "@/assets/project-quality.jpg";
-import gen1 from "@/assets/project-quality.jpg";
-import gen2 from "@/assets/project-quality.jpg";
-import gen3 from "@/assets/project-quality.jpg";
+import stone2 from "@/assets/projects/stone2.jpg";
+import stone3 from "@/assets/projects/stone3.jpg";
+import gen1 from "@/assets/projects/gen1.jpg";
+import gen2 from "@/assets/projects/gen2.jpg";
+import gen3 from "@/assets/projects/gen3.jpg";
 
 const ProjectDetail: React.FC = () => {
   const { projectId } = useParams();
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const navigate = useNavigate();
 
   // helper to provide a readable fallback if translation key is missing
@@ -63,7 +63,7 @@ const ProjectDetail: React.FC = () => {
         "projects.clients.aboHashem.detailed",
         "Delivered a turnkey logistics enhancement: installed heavy-duty hydraulic lifting platforms alongside standard elevators to improve throughput, safety, and operational flexibility across a multi-level warehouse."
       ),
-      images: [stone1],
+      images: [aboHashem1, aboHashem2, aboHashem3],
       stats: [
         { label: t("projects.stats.completion"), value: "93%" },
         { label: t("projects.stats.satisfaction"), value: "96%" },
@@ -143,7 +143,7 @@ const ProjectDetail: React.FC = () => {
       ],
     },
 
-    "stone": {
+    stone: {
       title: withFallback(
         "projects.clients.stone.title",
         "Stone Crushing & Classification"
@@ -228,11 +228,11 @@ const ProjectDetail: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <Card>
             <CardContent className="p-6">
-              <Carousel className="w-full">
-                <CarouselContent>
+              <Carousel className="w-full flex">
+                <CarouselContent dir={language === "ar" ? "ltr" : "ltr"}>
                   {project.images.map((image: string, index: number) => (
-                    <CarouselItem key={index}>
-                      <div className="relative h-96 overflow-hidden rounded-lg">
+                    <CarouselItem key={index} className="basis-full">
+                      <div className="relative h-96 overflow-hidden rounded-[2px] basis-full min-w-full">
                         <img
                           src={image}
                           alt={`${project.title} - ${index + 1}`}
@@ -242,19 +242,57 @@ const ProjectDetail: React.FC = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
                 <CarouselNext />
+                <CarouselPrevious />
               </Carousel>
             </CardContent>
           </Card>
+
           <Card>
             <CardContent className="p-6">
               <h2 className="text-2xl font-bold mb-4">
                 {t("projects.details")}
               </h2>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed mb-6">
                 {project.detailedDescription}
               </p>
+
+              <div className="flex gap-6 mt-4">
+                {/* Duration */}
+                <div className="flex flex-col items-center text-center">
+                  <Calendar className="h-6 w-6 text-gray-500 mb-1" />
+                  <span>
+                    {project.startDate} - {project.endDate}
+                  </span>
+                  <span className="text-sm text-muted-foreground">
+                    Duration
+                  </span>
+                </div>
+
+                {/* Status */}
+                <div className="flex flex-col items-center text-center">
+                  {project.isDone ? (
+                    <CheckCircle className="h-6 w-6 text-green-500 mb-1" />
+                  ) : (
+                    <Clock className="h-6 w-6 text-yellow-500 mb-1" />
+                  )}
+                  <span
+                    className={
+                      project.isDone ? "text-green-500" : "text-yellow-500"
+                    }
+                  >
+                    {project.isDone ? "Done" : "Unfinished"}
+                  </span>
+                  <span className="text-sm text-muted-foreground">Status</span>
+                </div>
+
+                {/* Country */}
+                <div className="flex flex-col items-center text-center">
+                  <Flag className="h-6 w-6 text-gray-500 mb-1" />
+                  <span>{project.country}</span>
+                  <span className="text-sm text-muted-foreground">Country</span>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>

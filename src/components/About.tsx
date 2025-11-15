@@ -31,7 +31,7 @@ const About = () => {
             <ul className="space-y-4">
               {benefits.map((benefit, index) => (
                 <li key={index} className="flex items-start">
-                  <CheckCircle2 className="h-6 w-6 text-accent mr-3 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="h-6 w-6 text-accent mx-3 flex-shrink-0 mt-0.5" />
                   <span className="text-foreground">{benefit}</span>
                 </li>
               ))}

@@ -27,12 +27,12 @@ const Hero = () => {
             {t('hero.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="group">
+            <Button asChild size="lg" className="group rounded-[3px]">
               <a href="#contact">
                 {t('hero.cta')}
                 </a>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button asChild variant="outline" size="lg" className="rounded-[3px]">
               <a href="#consultation">{t('hero.bookConsultation')}</a>
             </Button>
           </div>

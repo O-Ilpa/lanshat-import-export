@@ -129,7 +129,7 @@ const Contact = () => {
               <div className="text-foreground font-medium">{t('footer.address')}</div>
             </div>
           </div>
-          <div className="bg-card rounded-2xl p-8 border border-border">
+          <div className="bg-card rounded-[3px] p-8 border border-border">
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -166,7 +166,7 @@ const Contact = () => {
                   required
                 />
               </div>
-              <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+              <Button type="submit" size="lg" className="w-full rounded-[3px]" disabled={isSubmitting}>
                 {isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
               </Button>
             </form>

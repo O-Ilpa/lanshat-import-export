@@ -225,7 +225,7 @@ const ConsultationForm = () => {
                 />
               </div>
 
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button type="submit" className="w-full rounded-[3px]" disabled={loading}>
                 {loading ? t('consultation.submitting') : t('consultation.submit')}
               </Button>
             </form>
