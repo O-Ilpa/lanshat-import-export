@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Calendar, CheckCircle, Clock, Flag } from 'lucide-react';
 import {
   Carousel,
@@ -34,6 +35,8 @@ const ProjectDetail: React.FC = () => {
   const { projectId } = useParams();
   const { language, t } = useLanguage();
   const navigate = useNavigate();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   // helper to provide a readable fallback if translation key is missing
   const withFallback = (key: string, fallback: string) => {
@@ -238,7 +241,13 @@ const ProjectDetail: React.FC = () => {
                 <CarouselContent dir={language === "ar" ? "ltr" : "ltr"}>
                   {project.images.map((image: string, index: number) => (
                     <CarouselItem key={index} className="basis-full">
-                      <div className="relative h-96 overflow-hidden rounded-[2px] basis-full min-w-full">
+                      <div 
+                        className="relative h-96 overflow-hidden basis-full min-w-full cursor-pointer hover:opacity-90 transition-opacity"
+                        onClick={() => {
+                          setSelectedImageIndex(index);
+                          setLightboxOpen(true);
+                        }}
+                      >
                         <img
                           src={image}
                           alt={`${project.title} - ${index + 1}`}
@@ -275,6 +284,26 @@ const ProjectDetail: React.FC = () => {
             </CardContent>
           </Card>
         </div>
+
+        <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+          <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-0 bg-black/95">
+            <Carousel className="w-full h-full flex items-center justify-center" opts={{ startIndex: selectedImageIndex }}>
+              <CarouselContent className="h-full">
+                {project.images.map((image: string, index: number) => (
+                  <CarouselItem key={index} className="basis-full flex items-center justify-center">
+                    <img
+                      src={image}
+                      alt={`${project.title} - ${index + 1}`}
+                      className="max-h-[85vh] max-w-full object-contain"
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselNext className="right-4" />
+              <CarouselPrevious className="left-4" />
+            </Carousel>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
