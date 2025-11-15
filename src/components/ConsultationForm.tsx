@@ -13,6 +13,16 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import emailjs from '@emailjs/browser';
+import { z } from "zod";
+
+const consultationSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  phone: z.string().trim().min(1, "Phone is required").max(20, "Phone must be less than 20 characters"),
+  field: z.string().min(1, "Please select a consultation field"),
+  message: z.string().trim().max(1000, "Message must be less than 1000 characters").optional(),
+});
 
 const ConsultationForm = () => {
   const { t } = useLanguage();
@@ -30,56 +40,83 @@ const ConsultationForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!date) {
-      toast.error(t('consultation.selectDate'));
-      return;
-    }
-
-    if (!formData.time) {
-      toast.error(t('consultation.selectTime'));
-      return;
-    }
-
-    // Combine date and time
-    const [hours, minutes] = formData.time.split(':');
-    const combinedDateTime = new Date(date);
-    combinedDateTime.setHours(parseInt(hours), parseInt(minutes));
-
-    setLoading(true);
-
     try {
+      // Validate data
+      consultationSchema.parse({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        field: formData.field,
+        message: formData.message || "",
+      });
+
+      if (!date) {
+        toast.error(t('consultation.selectDate'));
+        return;
+      }
+
+      if (!formData.time) {
+        toast.error(t('consultation.selectTime'));
+        return;
+      }
+
+      // Combine date and time
+      const [hours, minutes] = formData.time.split(':');
+      const combinedDateTime = new Date(date);
+      combinedDateTime.setHours(parseInt(hours), parseInt(minutes));
+
+      setLoading(true);
+
       // Insert into database
       const { error: dbError } = await supabase
         .from('consultation_requests')
         .insert([{
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
           preferred_date: combinedDateTime.toISOString(),
           field: formData.field,
-          message: formData.message
+          message: formData.message.trim()
         }]);
 
       if (dbError) throw dbError;
 
-      // Send calendar invite via edge function
-      const { error: calendarError } = await supabase.functions.invoke('send-calendar-invite', {
-        body: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          date: combinedDateTime.toISOString(),
-          field: formData.field,
-          message: formData.message
-        }
-      });
+      // Send emails via EmailJS
+      try {
+        // Email to business
+        await emailjs.send(
+          'YOUR_SERVICE_ID',
+          'YOUR_CONSULTATION_TEMPLATE_ID',
+          {
+            to_email: 'your-business-email@example.com',
+            from_name: formData.name.trim(),
+            from_email: formData.email.trim(),
+            phone: formData.phone.trim(),
+            field: formData.field,
+            message: formData.message.trim() || 'No message provided',
+            preferred_date: format(combinedDateTime, "PPP 'at' p"),
+          },
+          'YOUR_PUBLIC_KEY'
+        );
 
-      if (calendarError) {
-        console.error('Calendar error:', calendarError);
-        toast.warning(t('consultation.submittedNoCalendar'));
-      } else {
-        toast.success(t('consultation.success'));
+        // Confirmation email to client
+        await emailjs.send(
+          'YOUR_SERVICE_ID',
+          'YOUR_CONFIRMATION_TEMPLATE_ID',
+          {
+            to_email: formData.email.trim(),
+            client_name: formData.name.trim(),
+            field: formData.field,
+            preferred_date: format(combinedDateTime, "PPP 'at' p"),
+          },
+          'YOUR_PUBLIC_KEY'
+        );
+      } catch (emailError) {
+        console.error("EmailJS error:", emailError);
+        // Continue since we saved to database
       }
+
+      toast.success(t('consultation.success'));
 
       // Reset form
       setFormData({
@@ -92,8 +129,12 @@ const ConsultationForm = () => {
       });
       setDate(undefined);
     } catch (error) {
-      console.error('Error:', error);
-      toast.error(t('consultation.error'));
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+      } else {
+        console.error('Error:', error);
+        toast.error(t('consultation.error'));
+      }
     } finally {
       setLoading(false);
     }
