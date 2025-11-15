@@ -57,7 +57,13 @@ const translations = {
       "تحسينات لوجستية متكاملة وأنظمة رفع للمستودعات متعددة الطوابق.",
     "projects.clients.aboHashem.detailed":
       "قدّمنا مشروع تحسين لوجستي متكامل لمستودع متعدد الطوابق: تركيب منصة رفع هيدروليكية ثقيلة إلى جانب مصاعد عادية للبضائع الخفيفة، مما حسّن من معدل التدفق، وخفّض زمن المناولة، ورفع مستوى السلامة والمرونة التشغيلية.",
-
+    "projects.clients.aboHashem.keyPoints": [
+      "منصات رفع هيدروليكية عالية التحمل",
+      "تكامل مع مستودعات متعددة الطوابق",
+      "معايير سلامة محسّنة",
+      "تحسين معدل التدفق التشغيلي",
+      "حل متكامل جاهز للتشغيل"
+    ],
     "projects.clients.aboHashem.images": [
       "/assets/projects/aboHashem-1.jpg",
       "/assets/projects/aboHashem-2.jpg",
@@ -67,6 +73,12 @@ const translations = {
       "توريد وتجميع معدات عمليات كيماوية جديدة ومجددة بموثوقية عالية.",
     "projects.clients.alsanhouri.detailed":
       "قمنا بتوريد وتجميع مزيج من المعدات الجديدة والمجددة لخطوط المعالجة، مع تنفيذ التكامل الموقعي والتشغيل التجريبي لضمان التوافق والاعتمادية والالتزام بمعايير السلامة.",
+    "projects.clients.alsanhouri.keyPoints": [
+      "توريد معدات جديدة ومجددة",
+      "تكامل مع خطوط المعالجة الكيميائية",
+      "الالتزام بمعايير السلامة",
+      "توافق مع الخطوط الموجودة"
+    ],
     "projects.clients.alsanhouri.images": [
       "/assets/projects/alsanhouri-1.jpg",
       "/assets/projects/alsanhouri-2.jpg",
@@ -76,24 +88,51 @@ const translations = {
       "تجميع وتوريد ماكينات ومواد خام لخطوط إنتاج مواد التعبئة والتغليف.",
     "projects.clients.almostakbal.detailed":
       "قدّمنا حلًا متكاملًا لصناعة التعبئة: من موردية المعدات والمواد الخام إلى التجميع الموقعي والتشغيل والمعايرة، ليكون الخط جاهزًا للإنتاج الصناعي على نطاق واسع.",
+    "projects.clients.almostakbal.keyPoints": [
+      "توريد آلات التعبئة بالكامل",
+      "توريد المواد الخام",
+      "التجميع والتشغيل الموقعي",
+      "المعايرة الإنتاجية",
+      "جاهزية تشغيلية فورية"
+    ],
 
     "projects.clients.government.title": "مشاريع حكومية",
     "projects.clients.government.desc":
       "توريد وتجميع محطات أسفلت وخرسانة موقعيًا لدعم مشروعات البنية التحتية.",
     "projects.clients.government.detailed":
       "نفذنا عمليات الشراء واللوجستيات وتركيب محطات الأسفلت والخرسانة لمشروعات حكومية، مع ضمان مطابقة المواصفات التنظيمية ومعايير الجودة المتطلبة.",
+    "projects.clients.government.keyPoints": [
+      "محطات إنتاج الأسفلت",
+      "محطات إنتاج الخرسانة",
+      "الامتثال للوائح التنظيمية",
+      "بروتوكولات ضمان الجودة",
+      "أنظمة دعم البنية التحتية"
+    ],
 
     "projects.clients.stone.title": "محطات تكسير وتصنيف الأحجار",
     "projects.clients.stone.desc":
       "تنفيذ محطات تكسير وتصنيف شاملة لمواد البناء والركام.",
     "projects.clients.stone.detailed":
       "تسليم محطات تكسير وتصنيف مصممة لتحقيق أعلى معدلات الإنتاج ودقة تصنيف المواد، مع التركيز على المتانة وسهولة الصيانة وجودة الناتج النهائي.",
+    "projects.clients.stone.keyPoints": [
+      "معدات تكسير الأحجار",
+      "أنظمة تصنيف المواد",
+      "تهيئة معدل الإنتاج الأمثل",
+      "تحسين إنتاج الركام"
+    ],
 
     "projects.clients.power.title": "مولدات طاقة ووحدات مستقلة",
     "projects.clients.power.desc":
       "توريد وتشغيل واختبار مولدات صناعية وحلول طاقة مستقلة.",
     "projects.clients.power.detailed":
       "قمنا بتوريد وتشغيل مجموعات مولدات عالية الأداء وحلول طاقة مستقلة، شملت اختبارات التحميل ودمج أنظمة التحكم وتسليم مستندات التشغيل لضمان استقرار التشغيل طويل المدى.",
+    "projects.clients.power.keyPoints": [
+      "مجموعات مولدات عالية الأداء",
+      "حلول طاقة مستقلة",
+      "اختبارات تحميل شاملة",
+      "توثيق تسليم كامل",
+      "موثوقية تشغيلية طويلة المدى"
+    ],
 
     // Consultation
     "consultation.title": "احجز استشارة مجانية",
@@ -257,6 +296,13 @@ const translations = {
       "Comprehensive logistics and multi-level warehouse lifting systems.",
     "projects.clients.aboHashem.detailed":
       "Delivered a turnkey logistics enhancement: installed heavy-duty hydraulic lifting platforms alongside standard elevators to improve throughput, safety, and operational flexibility across a multi-level warehouse.",
+    "projects.clients.aboHashem.keyPoints": [
+      "Heavy-duty hydraulic lifting platforms",
+      "Multi-level warehouse integration",
+      "Enhanced safety protocols",
+      "Improved operational throughput",
+      "Complete turnkey solution"
+    ],
     "projects.clients.aboHashem.images": [
       "/assets/projects/aboHashem-1.jpg",
       "/assets/projects/aboHashem-2.jpg",
@@ -267,6 +313,12 @@ const translations = {
       "Supply and assembly of reliable new and reconditioned chemical processing equipment.",
     "projects.clients.alsanhouri.detailed":
       "Supplied and assembled a mix of new and refurbished process equipment, ensuring compatibility with existing lines and prioritizing operational reliability and safety standards.",
+    "projects.clients.alsanhouri.keyPoints": [
+      "New and refurbished equipment supply",
+      "Chemical processing integration",
+      "Safety standards compliance",
+      "Existing line compatibility"
+    ],
     "projects.clients.alsanhouri.images": [
       "/assets/projects/alsanhouri-1.jpg",
       "/assets/projects/alsanhouri-2.jpg",
@@ -277,6 +329,13 @@ const translations = {
       "Assembly and supply of machines and raw materials for packaging production.",
     "projects.clients.almostakbal.detailed":
       "Delivered complete packaging production setups, from sourcing machinery and raw materials to on-site assembly, commissioning, and calibration for immediate production use.",
+    "projects.clients.almostakbal.keyPoints": [
+      "Complete packaging machinery sourcing",
+      "Raw materials supply",
+      "On-site assembly and commissioning",
+      "Production calibration",
+      "Immediate operational readiness"
+    ],
     "projects.clients.almostakbal.images": [
       "/assets/projects/almostakbal-1.jpg",
       "/assets/projects/almostakbal-2.jpg",
@@ -287,6 +346,13 @@ const translations = {
       "Supply and on-site assembly of asphalt and concrete stations for public infrastructure.",
     "projects.clients.government.detailed":
       "Executed sourcing, logistics, and assembly for asphalt and concrete batching stations to support government infrastructure projects, meeting regulatory and quality requirements.",
+    "projects.clients.government.keyPoints": [
+      "Asphalt batching stations",
+      "Concrete production facilities",
+      "Regulatory compliance",
+      "Quality assurance protocols",
+      "Infrastructure support systems"
+    ],
     "projects.clients.government.images": [
       "/assets/projects/government-1.jpg",
       "/assets/projects/government-2.jpg",
@@ -297,6 +363,12 @@ const translations = {
       "Implementation of stone crushing and classification stations for construction materials.",
     "projects.clients.stone.detailed":
       "Turnkey delivery of crushing and classification equipment, configured for optimal throughput and material grading, suitable for aggregate and construction material operations.",
+    "projects.clients.stone.keyPoints": [
+      "Stone crushing equipment",
+      "Material classification systems",
+      "Optimal throughput configuration",
+      "Aggregate production optimization"
+    ],
     "projects.clients.stone.images": [
       "/assets/projects/stone-1.jpg",
       "/assets/projects/stone-2.jpg",
@@ -307,6 +379,13 @@ const translations = {
       "Supply and commissioning of industrial power generator units and standalone energy solutions.",
     "projects.clients.power.detailed":
       "Supplied and commissioned high-performance generator sets and standalone power solutions, including load testing and handover documentation for reliable long-term operation.",
+    "projects.clients.power.keyPoints": [
+      "High-performance generator sets",
+      "Standalone energy solutions",
+      "Comprehensive load testing",
+      "Complete handover documentation",
+      "Long-term operational reliability"
+    ],
     "projects.clients.power.images": [
       "/assets/projects/power-1.jpg",
       "/assets/projects/power-2.jpg",
