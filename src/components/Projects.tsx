@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import aboHashem1 from "@/assets/projects/aboHashem1.jpg"
 import stone1 from "@/assets/projects/stone1.jpg";
 import alSanhori1 from "@/assets/projects/alSanhori1.jpg";
-import power1 from "@/assets/projects/power1.jpg";
+import power1 from "@/assets/projects/power2.jpg";
 
 
 const Projects: React.FC = () => {

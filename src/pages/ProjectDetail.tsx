@@ -4,7 +4,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Calendar, CheckCircle, Clock, Flag } from 'lucide-react';
 import {
   Carousel,
   CarouselContent,
@@ -247,7 +246,7 @@ const ProjectDetail: React.FC = () => {
                 <CarouselContent dir={language === "ar" ? "ltr" : "ltr"}>
                   {project.images.map((image: string, index: number) => (
                     <CarouselItem key={index} className="basis-full">
-                      <div 
+                      <div
                         className="relative h-96 overflow-hidden basis-full min-w-full cursor-pointer hover:opacity-90 transition-opacity"
                         onClick={() => {
                           setSelectedImageIndex(index);
@@ -291,21 +290,35 @@ const ProjectDetail: React.FC = () => {
           </Card>
         </div>
 
-        <Dialog open={lightboxOpen} onOpenChange={(open) => {
-          setLightboxOpen(open);
-          if (!open) setImageZoom(1);
-        }}>
-          <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-0 bg-black/95">
-            <Carousel className="w-full h-full flex items-center justify-center" opts={{ startIndex: selectedImageIndex }}>
-              <CarouselContent className="h-full" dir={language === "ar" ? "ltr" : "ltr"}>
+        <Dialog
+          open={lightboxOpen}
+          onOpenChange={(open) => {
+            setLightboxOpen(open);
+            if (!open) setImageZoom(1);
+          }}
+        >
+          <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-0 bg-black/15 border-none">
+            <Carousel
+              className="w-full h-full flex items-center justify-center"
+              opts={{ startIndex: selectedImageIndex }}
+            >
+              <CarouselContent
+                className="h-full"
+                dir={language === "ar" ? "ltr" : "ltr"}
+              >
                 {project.images.map((image: string, index: number) => (
-                  <CarouselItem key={index} className="basis-full flex items-center justify-center overflow-auto">
+                  <CarouselItem
+                    key={index}
+                    className="basis-full flex items-center justify-center overflow-auto"
+                  >
                     <img
                       src={image}
                       alt={`${project.title} - ${index + 1}`}
                       className="max-h-[85vh] max-w-full object-contain cursor-zoom-in transition-transform"
                       style={{ transform: `scale(${imageZoom})` }}
-                      onClick={() => setImageZoom(prev => prev === 1 ? 2 : 1)}
+                      onClick={() =>
+                        setImageZoom((prev) => (prev === 1 ? 2 : 1))
+                      }
                     />
                   </CarouselItem>
                 ))}
