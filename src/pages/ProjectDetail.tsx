@@ -17,7 +17,8 @@ import aboHashem2 from "@/assets/projects/aboHashem2.jpg";
 import aboHashem3 from "@/assets/projects/aboHashem3.jpg";
 import alSanhori1 from "@/assets/projects/alSanhori1.jpg";
 import alSanhori2 from "@/assets/projects/alSanhori2.jpg";
-import alSanhori3 from "@/assets/projects/alSanhori3.jpg";
+import alSanhori4 from "@/assets/projects/alSanhori2.jpeg";
+import alSanhori3 from "@/assets/projects/alSanhori3.jpeg";
 import alMostakbl1 from "@/assets/projects/alMostakbl1.jpg";
 import alMostakbl2 from "@/assets/projects/alMostakbl2.jpg";
 import alMostakbl3 from "@/assets/projects/alMostakbl3.jpg";
@@ -97,7 +98,7 @@ const ProjectDetail: React.FC = () => {
         "Supplied and assembled a mix of new and refurbished process equipment, ensuring compatibility with existing lines and prioritizing operational reliability and safety standards."
       ),
       keyPoints: t("projects.clients.alsanhouri.keyPoints") || [],
-      images: [stone1],
+      images: [alSanhori1, alSanhori2, alSanhori3, alSanhori4],
       stats: [
         { label: t("projects.stats.completion"), value: "90%" },
         { label: t("projects.stats.satisfaction"), value: "95%" },
@@ -169,7 +170,7 @@ const ProjectDetail: React.FC = () => {
         "Turnkey delivery of crushing and classification equipment, configured for optimal throughput and material grading — suitable for aggregate and construction material operations."
       ),
       keyPoints: t("projects.clients.stone.keyPoints") || [],
-      images: [stone1],
+      images: [stone1, stone2, stone3],
       stats: [
         { label: t("projects.stats.completion"), value: "88%" },
         { label: t("projects.stats.satisfaction"), value: "92%" },
@@ -296,7 +297,7 @@ const ProjectDetail: React.FC = () => {
         }}>
           <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-0 bg-black/95">
             <Carousel className="w-full h-full flex items-center justify-center" opts={{ startIndex: selectedImageIndex }}>
-              <CarouselContent className="h-full">
+              <CarouselContent className="h-full" dir={language === "ar" ? "ltr" : "ltr"}>
                 {project.images.map((image: string, index: number) => (
                   <CarouselItem key={index} className="basis-full flex items-center justify-center overflow-auto">
                     <img

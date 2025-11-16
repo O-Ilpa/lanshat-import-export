@@ -109,7 +109,7 @@ const translations = {
       "أنظمة دعم البنية التحتية"
     ],
 
-    "projects.clients.stone.title": "محطات تكسير وتصنيف الأحجار",
+    "projects.clients.stone.title": "Biessi Plast",
     "projects.clients.stone.desc":
       "تنفيذ محطات تكسير وتصنيف شاملة لمواد البناء والركام.",
     "projects.clients.stone.detailed":
@@ -121,7 +121,7 @@ const translations = {
       "تحسين إنتاج الركام"
     ],
 
-    "projects.clients.power.title": "مولدات طاقة ووحدات مستقلة",
+    "projects.clients.power.title": "3Y GBMH",
     "projects.clients.power.desc":
       "توريد وتشغيل واختبار مولدات صناعية وحلول طاقة مستقلة.",
     "projects.clients.power.detailed":
