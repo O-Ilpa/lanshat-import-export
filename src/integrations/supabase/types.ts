@@ -38,6 +38,7 @@ export type Database = {
           email: string
           field: string
           id: string
+          meeting_type: string | null
           message: string | null
           name: string
           phone: string
@@ -48,6 +49,7 @@ export type Database = {
           email: string
           field: string
           id?: string
+          meeting_type?: string | null
           message?: string | null
           name: string
           phone: string
@@ -58,6 +60,7 @@ export type Database = {
           email?: string
           field?: string
           id?: string
+          meeting_type?: string | null
           message?: string | null
           name?: string
           phone?: string
