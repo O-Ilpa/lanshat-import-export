@@ -25,7 +25,7 @@ const Index = () => {
       <Testimonials />
       <Contact />
       <Footer />
-      <BrochurePopup />
+      {/* <BrochurePopup /> */}
     </div>
   );
 };

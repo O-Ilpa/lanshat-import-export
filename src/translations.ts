@@ -227,9 +227,9 @@ const translations = {
     "footer.about": "عن الشركة",
     "footer.contact": "تواصل معنا",
     "footer.contactInfo": "معلومات الاتصال",
-    "footer.email": "contact@lanshat.com",
-    "footer.phone": "+1 (555) 123-4567",
-    "footer.address": "نيويورك، نيويورك",
+    "footer.email": "sales@lanshat.com",
+    "footer.phone": "+201224070331",
+    "footer.address": "الاسكندرية، مصر",
     "footer.followUs": "تابعنا",
     "footer.copyright": "لنشات. جميع الحقوق محفوظة. ",
 
@@ -502,11 +502,11 @@ const translations = {
     "footer.about": "About",
     "footer.contact": "Contact",
     "footer.contactInfo": "Contact Info",
-    "footer.email": "contact@lanshat.com",
-    "footer.phone": "+1 (555) 123-4567",
-    "footer.address": "New York, NY",
+    "footer.email": "sales@lanshat.com",
+    "footer.phone": "+201224070331",
+    "footer.address": "Alexandria, Egypt",
     "footer.followUs": "Follow Us",
-    "footer.copyright": "© 2024 Lanshat. All rights reserved.",
+    "footer.copyright": "© 2025 Lanshat. All rights reserved.",
 
     // Brochure Popup
     "brochure.title": "Download Our Brochure",

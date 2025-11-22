@@ -119,7 +119,7 @@ const ProjectDetail: React.FC = () => {
         "Delivered complete packaging production setups — from sourcing machinery and raw materials to on-site assembly, commissioning, and calibration for immediate production use."
       ),
       keyPoints: t("projects.clients.almostakbal.keyPoints") || [],
-      images: [stone1],
+      images: [alMostakbl1, alMostakbl2, alMostakbl3],
       stats: [
         { label: t("projects.stats.completion"), value: "92%" },
         { label: t("projects.stats.satisfaction"), value: "97%" },

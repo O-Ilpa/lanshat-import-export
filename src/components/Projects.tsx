@@ -7,6 +7,7 @@ import aboHashem1 from "@/assets/projects/aboHashem1.jpg"
 import stone1 from "@/assets/projects/stone1.jpg";
 import alSanhori1 from "@/assets/projects/alSanhori1.jpg";
 import power1 from "@/assets/projects/power2.jpg";
+import alMostakbl1 from "@/assets/projects/alMostakbl1.jpg";
 
 
 const Projects: React.FC = () => {
@@ -33,7 +34,7 @@ const Projects: React.FC = () => {
     {
       id: "almostakbal",
       tKey: "almostakbal",
-      image: aboHashem1,
+      image: alMostakbl1,
     },
     {
       id: "government",
