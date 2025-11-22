@@ -69,7 +69,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-foreground">{t('footer.followUs')}</h3>
             <div className="flex gap-4">
               <a 
-                href="https://wa.me/1234567890" 
+                href="https://wa.me/+201224070331" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="h-10 w-10 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-center"
@@ -78,7 +78,7 @@ const Footer = () => {
                 <MessageCircle className="h-5 w-5" />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/company/lanshat" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="h-10 w-10 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-center"
@@ -86,7 +86,7 @@ const Footer = () => {
               >
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a 
+              {/* <a 
                 href="https://youtube.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -94,8 +94,8 @@ const Footer = () => {
                 aria-label="YouTube"
               >
                 <Youtube className="h-5 w-5" />
-              </a>
-              <a 
+              </a> */}
+              {/* <a 
                 href="https://instagram.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -103,7 +103,7 @@ const Footer = () => {
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
