@@ -16,8 +16,8 @@ import aboHashem2 from "@/assets/projects/aboHashem2.jpg";
 import aboHashem3 from "@/assets/projects/aboHashem3.jpg";
 import alSanhori1 from "@/assets/projects/alSanhori1.jpg";
 import alSanhori2 from "@/assets/projects/alSanhori2.jpg";
-import alSanhori4 from "@/assets/projects/alSanhori2.jpeg";
-import alSanhori3 from "@/assets/projects/alSanhori3.jpeg";
+import alSanhori4 from "@/assets/projects/alSanhori2.jpg";
+import alSanhori3 from "@/assets/projects/alSanhori3.jpg";
 import alMostakbl1 from "@/assets/projects/alMostakbl1.jpg";
 import alMostakbl2 from "@/assets/projects/alMostakbl2.jpg";
 import alMostakbl3 from "@/assets/projects/alMostakbl3.jpg";
@@ -194,7 +194,7 @@ const ProjectDetail: React.FC = () => {
         "Supplied and commissioned high-performance generator sets and standalone power solutions, including load testing and handover documentation for reliable long-term operation."
       ),
       keyPoints: t("projects.clients.power.keyPoints") || [],
-      images: [stone1],
+      images: [gen1, gen2, gen3],
       stats: [
         { label: t("projects.stats.completion"), value: "91%" },
         { label: t("projects.stats.satisfaction"), value: "95%" },

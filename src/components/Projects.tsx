@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import aboHashem1 from "@/assets/projects/aboHashem1.jpg"
 import stone1 from "@/assets/projects/stone1.jpg";
 import alSanhori1 from "@/assets/projects/alSanhori1.jpg";
-import power1 from "@/assets/projects/power2.jpg";
+import gen1 from "@/assets/projects/gen1.jpg";
 import alMostakbl1 from "@/assets/projects/alMostakbl1.jpg";
 
 
@@ -37,11 +37,6 @@ const Projects: React.FC = () => {
       image: alMostakbl1,
     },
     {
-      id: "government",
-      tKey: "government",
-      image: aboHashem1,
-    },
-    {
       id: "stone", 
       tKey: "stone",
       image: stone1,
@@ -49,7 +44,7 @@ const Projects: React.FC = () => {
     {
       id: "power", 
       tKey: "power",
-      image: power1,
+      image: gen1,
     },
   ];
 
