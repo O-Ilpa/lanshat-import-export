@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import {
   Carousel,
   CarouselContent,
@@ -11,29 +11,37 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import aboHashem1 from "@/assets/project-manufacturing.jpg";
-import aboHashem2 from "@/assets/project-manufacturing.jpg";
-import aboHashem3 from "@/assets/project-manufacturing.jpg";
-import alSanhori1 from "@/assets/project-supply-chain.jpg";
-import alSanhori2 from "@/assets/project-supply-chain.jpg";
-import alSanhori3 from "@/assets/project-supply-chain.jpg";
-import alMostakbl1 from "@/assets/project-equipment.jpg";
-import alMostakbl2 from "@/assets/project-equipment.jpg";
-import alMostakbl3 from "@/assets/project-equipment.jpg";
-import gov1 from "@/assets/project-quality.jpg";
-import gov2 from "@/assets/project-quality.jpg";
-import gov3 from "@/assets/project-quality.jpg";
+import aboHashem1 from "@/assets/projects/aboHashem1.jpg";
+import aboHashem2 from "@/assets/projects/aboHashem2.jpg";
+import aboHashem3 from "@/assets/projects/aboHashem3.jpg";
+import alSanhori1 from "@/assets/projects/alSanhori1.jpg";
+import alSanhori2 from "@/assets/projects/alSanhori2.jpg";
+import alSanhori4 from "@/assets/projects/alSanhori2.jpg";
+import alSanhori3 from "@/assets/projects/alSanhori3.jpg";
+import alMostakbl1 from "@/assets/projects/alMostakbl1.jpg";
+import alMostakbl2 from "@/assets/projects/alMostakbl2.jpg";
+import alMostakbl3 from "@/assets/projects/alMostakbl3.jpg";
+import gov1 from "@/assets/projects/gov1.jpg";
+import gov2 from "@/assets/projects/gov2.jpg";
+import gov3 from "@/assets/projects/gov3.jpg";
 import stone1 from "@/assets/projects/stone1.jpg";
-import stone2 from "@/assets/project-quality.jpg";
-import stone3 from "@/assets/project-quality.jpg";
-import gen1 from "@/assets/project-quality.jpg";
-import gen2 from "@/assets/project-quality.jpg";
-import gen3 from "@/assets/project-quality.jpg";
+import stone2 from "@/assets/projects/stone2.jpg";
+import stone3 from "@/assets/projects/stone3.jpg";
+import gen1 from "@/assets/projects/gen1.jpg";
+import gen2 from "@/assets/projects/gen2.jpg";
+import gen3 from "@/assets/projects/gen3.jpg";
 
 const ProjectDetail: React.FC = () => {
   const { projectId } = useParams();
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const navigate = useNavigate();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [imageZoom, setImageZoom] = useState(1);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // helper to provide a readable fallback if translation key is missing
   const withFallback = (key: string, fallback: string) => {
@@ -64,7 +72,7 @@ const ProjectDetail: React.FC = () => {
         "Delivered a turnkey logistics enhancement: installed heavy-duty hydraulic lifting platforms alongside standard elevators to improve throughput, safety, and operational flexibility across a multi-level warehouse."
       ),
       keyPoints: t("projects.clients.aboHashem.keyPoints") || [],
-      images: [stone1],
+      images: [aboHashem1, aboHashem2, aboHashem3],
       stats: [
         { label: t("projects.stats.completion"), value: "93%" },
         { label: t("projects.stats.satisfaction"), value: "96%" },
@@ -89,7 +97,7 @@ const ProjectDetail: React.FC = () => {
         "Supplied and assembled a mix of new and refurbished process equipment, ensuring compatibility with existing lines and prioritizing operational reliability and safety standards."
       ),
       keyPoints: t("projects.clients.alsanhouri.keyPoints") || [],
-      images: [stone1],
+      images: [alSanhori1, alSanhori2, alSanhori3, alSanhori4],
       stats: [
         { label: t("projects.stats.completion"), value: "90%" },
         { label: t("projects.stats.satisfaction"), value: "95%" },
@@ -111,7 +119,7 @@ const ProjectDetail: React.FC = () => {
         "Delivered complete packaging production setups — from sourcing machinery and raw materials to on-site assembly, commissioning, and calibration for immediate production use."
       ),
       keyPoints: t("projects.clients.almostakbal.keyPoints") || [],
-      images: [stone1],
+      images: [alMostakbl1, alMostakbl2, alMostakbl3],
       stats: [
         { label: t("projects.stats.completion"), value: "92%" },
         { label: t("projects.stats.satisfaction"), value: "97%" },
@@ -147,7 +155,7 @@ const ProjectDetail: React.FC = () => {
       ],
     },
 
-    "stone": {
+    stone: {
       title: withFallback(
         "projects.clients.stone.title",
         "Stone Crushing & Classification"
@@ -161,7 +169,7 @@ const ProjectDetail: React.FC = () => {
         "Turnkey delivery of crushing and classification equipment, configured for optimal throughput and material grading — suitable for aggregate and construction material operations."
       ),
       keyPoints: t("projects.clients.stone.keyPoints") || [],
-      images: [stone1],
+      images: [stone1, stone2, stone3],
       stats: [
         { label: t("projects.stats.completion"), value: "88%" },
         { label: t("projects.stats.satisfaction"), value: "92%" },
@@ -186,7 +194,7 @@ const ProjectDetail: React.FC = () => {
         "Supplied and commissioned high-performance generator sets and standalone power solutions, including load testing and handover documentation for reliable long-term operation."
       ),
       keyPoints: t("projects.clients.power.keyPoints") || [],
-      images: [stone1],
+      images: [gen1, gen2, gen3],
       stats: [
         { label: t("projects.stats.completion"), value: "91%" },
         { label: t("projects.stats.satisfaction"), value: "95%" },
@@ -234,11 +242,17 @@ const ProjectDetail: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <Card>
             <CardContent className="p-6">
-              <Carousel className="w-full">
-                <CarouselContent>
+              <Carousel className="w-full flex">
+                <CarouselContent dir={language === "ar" ? "ltr" : "ltr"}>
                   {project.images.map((image: string, index: number) => (
-                    <CarouselItem key={index}>
-                      <div className="relative h-96 overflow-hidden rounded-lg">
+                    <CarouselItem key={index} className="basis-full">
+                      <div
+                        className="relative h-96 overflow-hidden basis-full min-w-full cursor-pointer hover:opacity-90 transition-opacity"
+                        onClick={() => {
+                          setSelectedImageIndex(index);
+                          setLightboxOpen(true);
+                        }}
+                      >
                         <img
                           src={image}
                           alt={`${project.title} - ${index + 1}`}
@@ -248,17 +262,18 @@ const ProjectDetail: React.FC = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
                 <CarouselNext />
+                <CarouselPrevious />
               </Carousel>
             </CardContent>
           </Card>
+
           <Card>
             <CardContent className="p-6">
               <h2 className="text-2xl font-bold mb-4">
                 {t("projects.details")}
               </h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
+              <p className="text-muted-foreground leading-relaxed mb-6 mb-6">
                 {project.detailedDescription}
               </p>
               {project.keyPoints && (
@@ -274,6 +289,45 @@ const ProjectDetail: React.FC = () => {
             </CardContent>
           </Card>
         </div>
+
+        <Dialog
+          open={lightboxOpen}
+          onOpenChange={(open) => {
+            setLightboxOpen(open);
+            if (!open) setImageZoom(1);
+          }}
+        >
+          <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-0 bg-black/15 border-none">
+            <Carousel
+              className="w-full h-full flex items-center justify-center"
+              opts={{ startIndex: selectedImageIndex }}
+            >
+              <CarouselContent
+                className="h-full"
+                dir={language === "ar" ? "ltr" : "ltr"}
+              >
+                {project.images.map((image: string, index: number) => (
+                  <CarouselItem
+                    key={index}
+                    className="basis-full flex items-center justify-center overflow-auto"
+                  >
+                    <img
+                      src={image}
+                      alt={`${project.title} - ${index + 1}`}
+                      className="max-h-[85vh] max-w-full object-contain cursor-zoom-in transition-transform"
+                      style={{ transform: `scale(${imageZoom})` }}
+                      onClick={() =>
+                        setImageZoom((prev) => (prev === 1 ? 2 : 1))
+                      }
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselNext className="right-4" />
+              <CarouselPrevious className="left-4" />
+            </Carousel>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

@@ -4,6 +4,11 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
 import aboHashem1 from "@/assets/projects/aboHashem1.jpg"
+import stone1 from "@/assets/projects/stone1.jpg";
+import alSanhori1 from "@/assets/projects/alSanhori1.jpg";
+import gen1 from "@/assets/projects/gen1.jpg";
+import alMostakbl1 from "@/assets/projects/alMostakbl1.jpg";
+
 
 const Projects: React.FC = () => {
   const { t } = useLanguage();
@@ -24,27 +29,22 @@ const Projects: React.FC = () => {
     {
       id: "alsanhouri",
       tKey: "alsanhouri",
-      image: aboHashem1,
+      image: alSanhori1,
     },
     {
       id: "almostakbal",
       tKey: "almostakbal",
-      image: aboHashem1,
+      image: alMostakbl1,
     },
     {
-      id: "government",
-      tKey: "government",
-      image: aboHashem1,
-    },
-    {
-      id: "stone", // matches ProjectDetail keys
+      id: "stone", 
       tKey: "stone",
-      image: aboHashem1,
+      image: stone1,
     },
     {
       id: "power", 
       tKey: "power",
-      image: aboHashem1,
+      image: gen1,
     },
   ];
 
@@ -67,7 +67,7 @@ const Projects: React.FC = () => {
             return (
               <Card
                 key={project.id}
-                className="border-border hover:shadow-lg transition-all duration-300 animate-fade-in overflow-hidden"
+                className="border-border rounded-none hover:shadow-lg transition-all duration-300 animate-fade-in overflow-hidden"
                 style={{ animationDelay: `${index * 0.06}s` }}
               >
                 <div className="relative h-48 overflow-hidden">

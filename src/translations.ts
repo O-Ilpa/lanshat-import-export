@@ -109,7 +109,7 @@ const translations = {
       "أنظمة دعم البنية التحتية"
     ],
 
-    "projects.clients.stone.title": "محطات تكسير وتصنيف الأحجار",
+    "projects.clients.stone.title": "Biessi Plast",
     "projects.clients.stone.desc":
       "تنفيذ محطات تكسير وتصنيف شاملة لمواد البناء والركام.",
     "projects.clients.stone.detailed":
@@ -121,7 +121,7 @@ const translations = {
       "تحسين إنتاج الركام"
     ],
 
-    "projects.clients.power.title": "مولدات طاقة ووحدات مستقلة",
+    "projects.clients.power.title": "3Y GBMH",
     "projects.clients.power.desc":
       "توريد وتشغيل واختبار مولدات صناعية وحلول طاقة مستقلة.",
     "projects.clients.power.detailed":
@@ -158,6 +158,10 @@ const translations = {
     "consultation.fields.quality": "إدارة الجودة",
     "consultation.fields.supply": "سلسلة التوريد",
     "consultation.fields.other": "أخرى",
+    "consultation.meetingType": "نوع الاجتماع",
+    "consultation.meetingTypePlaceholder": "اختر نوع الاجتماع",
+    "consultation.meetingTypes.office": "في المكتب",
+    "consultation.meetingTypes.online": "اجتماع عبر الإنترنت",
     "consultation.message": "رسالة إضافية",
     "consultation.messagePlaceholder": "أخبرنا المزيد عن احتياجاتك (اختياري)",
     "consultation.submit": "إرسال الطلب",
@@ -167,6 +171,16 @@ const translations = {
     "consultation.error": "حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى",
     "consultation.submittedNoCalendar":
       "تم إرسال طلبك بنجاح لكن لم نتمكن من إرسال دعوة التقويم",
+
+    // Testimonials
+    "testimonials.title": "ماذا يقول عملاؤنا",
+    "testimonials.subtitle": "استمع لآراء من يثق بنا في احتياجاته الصناعية",
+    "testimonials.omar": "العمل مع هذا الفريق غيّر مسار عملياتنا الصناعية. خبرتهم وتفانيهم لا مثيل لهما.",
+    "testimonials.mohamed": "كرئيس تنفيذي، أؤكد لكم أننا نقدم التميز في كل مشروع. التزامنا بالجودة هو ما يميزنا.",
+    "testimonials.abdelkareem": "الحلول التقنية المقدمة حسّنت بشكل ملحوظ من كفاءة التصنيع ومراقبة الجودة لدينا.",
+    "testimonials.roles.me": "مدير المشاريع",
+    "testimonials.roles.ceo": "الرئيس التنفيذي",
+    "testimonials.roles.specialist": "أخصائي تقني",
 
     // About
     "about.title": "لماذا تختار لنشات؟",
@@ -213,9 +227,9 @@ const translations = {
     "footer.about": "عن الشركة",
     "footer.contact": "تواصل معنا",
     "footer.contactInfo": "معلومات الاتصال",
-    "footer.email": "contact@lanshat.com",
-    "footer.phone": "+1 (555) 123-4567",
-    "footer.address": "نيويورك، نيويورك",
+    "footer.email": "sales@lanshat.com",
+    "footer.phone": "+201224070331",
+    "footer.address": "الاسكندرية، مصر",
     "footer.followUs": "تابعنا",
     "footer.copyright": "لنشات. جميع الحقوق محفوظة. ",
 
@@ -415,6 +429,10 @@ const translations = {
     "consultation.fields.quality": "Quality Management",
     "consultation.fields.supply": "Supply Chain",
     "consultation.fields.other": "Other",
+    "consultation.meetingType": "Meeting Type",
+    "consultation.meetingTypePlaceholder": "Select meeting type",
+    "consultation.meetingTypes.office": "In Office",
+    "consultation.meetingTypes.online": "Online Meeting",
     "consultation.message": "Additional Message",
     "consultation.messagePlaceholder":
       "Tell us more about your needs (optional)",
@@ -426,6 +444,16 @@ const translations = {
       "An error occurred while sending the request. Please try again",
     "consultation.submittedNoCalendar":
       "Your request was submitted successfully but we could not send the calendar invite",
+
+    // Testimonials
+    "testimonials.title": "What Our Clients Say",
+    "testimonials.subtitle": "Hear from those who trust us with their industrial needs",
+    "testimonials.omar": "Working with this team has transformed our industrial operations. Their expertise and dedication are unmatched.",
+    "testimonials.mohamed": "As CEO, I can confidently say we deliver excellence in every project. Our commitment to quality is what sets us apart.",
+    "testimonials.abdelkareem": "The technical solutions provided have significantly improved our manufacturing efficiency and quality control.",
+    "testimonials.roles.me": "Project Manager",
+    "testimonials.roles.ceo": "CEO",
+    "testimonials.roles.specialist": "Technical Specialist",
 
     // About
     "about.title": "Why Choose Lanshat?",
@@ -474,11 +502,11 @@ const translations = {
     "footer.about": "About",
     "footer.contact": "Contact",
     "footer.contactInfo": "Contact Info",
-    "footer.email": "contact@lanshat.com",
-    "footer.phone": "+1 (555) 123-4567",
-    "footer.address": "New York, NY",
+    "footer.email": "sales@lanshat.com",
+    "footer.phone": "+201224070331",
+    "footer.address": "Alexandria, Egypt",
     "footer.followUs": "Follow Us",
-    "footer.copyright": "© 2024 Lanshat. All rights reserved.",
+    "footer.copyright": "© 2025 Lanshat. All rights reserved.",
 
     // Brochure Popup
     "brochure.title": "Download Our Brochure",
